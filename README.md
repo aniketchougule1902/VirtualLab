@@ -12,7 +12,7 @@ A static web application for analyzing linear dependency/independency of vectors
 - 📚 **Educational Content**
 
 ## Live Demo
-[https://yourusername.github.io/linear-algebra-vector-checker](https://yourusername.github.io/linear-algebra-vector-checker)
+[https://yourusername.github.io/linear-algebra-vector-checker]([https://yourusername.github.io/linear-algebra-vector-checker](https://aniketchougule1902.github.io/MathVortexLab/))
 
 ## Quick Start
 1. Clone the repository
