@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Feedback & Contact | MathVortex Labs</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-project-diagram"></i>
+                <span class="logo-text">MathVortex<span class="logo-highlight">Labs</span></span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a href="aim.html" class="nav-link"><i class="fas fa-bullseye"></i> Aim</a></li>
+                <li class="nav-item"><a href="theory.html" class="nav-link"><i class="fas fa-book"></i> Theory</a></li>
+                <li class="nav-item"><a href="how-to-use.html" class="nav-link"><i class="fas fa-question-circle"></i> How to Use</a></li>
+                <li class="nav-item"><a href="references.html" class="nav-link"><i class="fas fa-link"></i> References</a></li>
+                <li class="nav-item"><a href="contributors.html" class="nav-link"><i class="fas fa-users"></i> Contributors</a></li>
+                <li class="nav-item"><a href="feedback.html" class="nav-link active"><i class="fas fa-comment"></i> Feedback</a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <header class="page-header">
+            <h1>Feedback & Contact Us</h1>
+            <p class="subtitle">Share your feedback, report issues, or get in touch with our team</p>
+        </header>
+
+        <div class="page-content">
+            <div class="content-section">
+                <h2>We Value Your Feedback</h2>
+                <p>Your feedback helps us improve the Linear Algebra Vector Checker and develop better educational tools. Whether you're a student, educator, or mathematics enthusiast, we want to hear from you.</p>
+                
+                <div class="note-box">
+                    <h4>Types of Feedback We Appreciate</h4>
+                    <ul>
+                        <li>Bug reports or technical issues</li>
+                        <li>Suggestions for new features or improvements</li>
+                        <li>Feedback on educational effectiveness</li>
+                        <li>Requests for additional example sets or topics</li>
+                        <li>Accessibility suggestions</li>
+                        <li>General comments about your experience</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Contact Form</h2>
+                <p>Use the form below to send us a message. We typically respond within 2-3 business days.</p>
+                
+                <div class="contact-form">
+                    <form id="feedbackForm">
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="role">Your Role</label>
+                            <select id="role" name="role" class="form-control">
+                                <option value="">Select your role</option>
+                                <option value="student">Student</option>
+                                <option value="educator">Educator/Teacher</option>
+                                <option value="professor">University Professor</option>
+                                <option value="researcher">Researcher</option>
+                                <option value="developer">Developer</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" class="form-control" required>
+                                <option value="">Select a subject</option>
+                                <option value="bug">Bug Report</option>
+                                <option value="feature">Feature Request</option>
+                                <option value="education">Educational Feedback</option>
+                                <option value="collaboration">Collaboration Inquiry</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" name="message" class="form-control" rows="6" required placeholder="Please provide details about your feedback, issue, or inquiry..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" name="consent" required>
+                                I agree to the privacy policy and consent to having my feedback used to improve this tool
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                        
+                        <div id="formMessage" style="display: none; margin-top: 20px; padding: 15px; border-radius: 8px; background-color: #d4edda; color: #155724;"></div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Other Ways to Reach Us</h2>
+                
+                <div class="team-grid">
+                    <div class="team-member">
+                        <i class="fas fa-envelope fa-3x" style="color: var(--secondary-teal); margin-bottom: 15px;"></i>
+                        <h3>Email</h3>
+                        <p><strong>General Inquiries:</strong><br>contact@mathvortexlabs.com</p>
+                        <p><strong>Educational Partnerships:</strong><br>partnerships@mathvortexlabs.com</p>
+                        <p><strong>Technical Support:</strong><br>support@mathvortexlabs.com</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <i class="fas fa-code-branch fa-3x" style="color: var(--secondary-teal); margin-bottom: 15px;"></i>
+                        <h3>GitHub</h3>
+                        <p>Report issues, request features, or contribute to the project:</p>
+                        <p><a href="https://github.com/mathvortexlabs/vector-checker" target="_blank">github.com/mathvortexlabs/vector-checker</a></p>
+                        <p>We welcome pull requests and issue reports from the open source community.</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <i class="fas fa-comments fa-3x" style="color: var(--secondary-teal); margin-bottom: 15px;"></i>
+                        <h3>Social Media</h3>
+                        <p>Connect with us on social media for updates and discussions:</p>
+                        <div class="social-links" style="justify-content: center; margin-top: 15px;">
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        </div>
+                        <p>Join our community of educators and mathematics enthusiasts.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="example-box">
+                    <h4>Q: How long does it take to get a response to my feedback?</h4>
+                    <p>A: We strive to respond to all feedback within 2-3 business days. Bug reports and critical issues are addressed as quickly as possible.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Q: Can I use this tool in my classroom or online course?</h4>
+                    <p>A: Yes! The Linear Algebra Vector Checker is free for educational use. We'd love to hear how you're using it in your teaching.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Q: Do you offer custom versions for specific educational institutions?</h4>
+                    <p>A: We're open to collaborations with educational institutions. Please contact us at partnerships@mathvortexlabs.com to discuss possibilities.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Q: How can I contribute to the development of this tool?</h4>
+                    <p>A: Check our GitHub repository for contribution guidelines. We welcome code contributions, documentation improvements, and testing assistance.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Q: Is my personal information safe when I submit feedback?</h4>
+                    <p>A: Yes, we take privacy seriously. We only use your information to respond to your feedback and improve our tools. We never share your information with third parties without your consent.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Report a Bug</h2>
+                
+                <div class="definition-box">
+                    <h4>How to Report Bugs Effectively</h4>
+                    <p>To help us fix issues quickly, please include as much detail as possible:</p>
+                    <ol>
+                        <li><strong>Description:</strong> What exactly went wrong?</li>
+                        <li><strong>Steps to Reproduce:</strong> Step-by-step instructions to recreate the issue</li>
+                        <li><strong>Expected Behavior:</strong> What should have happened?</li>
+                        <li><strong>Actual Behavior:</strong> What actually happened?</li>
+                        <li><strong>Environment:</strong> Browser, operating system, device type</li>
+                        <li><strong>Screenshots:</strong> If possible, include screenshots or screen recordings</li>
+                    </ol>
+                    <p>You can report bugs through the contact form or directly on GitHub.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Feature Requests</h2>
+                
+                <div class="note-box">
+                    <h4>Upcoming Features Based on User Feedback</h4>
+                    <p>Here are some features we're working on based on user suggestions:</p>
+                    <ul>
+                        <li>Support for vectors in ℝ⁴ (4D) with appropriate visualizations</li>
+                        <li>Step-by-step solution mode showing intermediate calculations</li>
+                        <li>Export capabilities for LaTeX and other academic formats</li>
+                        <li>More example sets with real-world applications</li>
+                        <li>Mobile app versions for iOS and Android</li>
+                        <li>Integration with learning management systems (LMS)</li>
+                    </ul>
+                    <p>Have another idea? Let us know using the contact form!</p>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2>Privacy Policy</h2>
+                
+                <div class="example-box">
+                    <h4>Our Commitment to Privacy</h4>
+                    <p>We are committed to protecting your privacy:</p>
+                    <ul>
+                        <li>We collect minimal information necessary to respond to feedback</li>
+                        <li>We never sell or share your personal information with third parties</li>
+                        <li>We use industry-standard security measures to protect your data</li>
+                        <li>You can request deletion of your information at any time</li>
+                        <li>Our tools run entirely in your browser - no data is sent to servers during normal use</li>
+                    </ul>
+                    <p>For the full privacy policy, please contact us at privacy@mathvortexlabs.com</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>MathVortex Labs</h4>
+                <p>An educational tool for linear algebra concepts</p>
+                <p>Pure HTML, CSS & JavaScript</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="theory.html"><i class="fas fa-chevron-right"></i> Theory</a></li>
+                    <li><a href="how-to-use.html"><i class="fas fa-chevron-right"></i> How to Use</a></li>
+                    <li><a href="feedback.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-envelope"></i> contact@mathvortexlabs.com</p>
+                <p><i class="fas fa-globe"></i> www.mathvortexlabs.com</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 MathVortex Labs. All rights reserved.</p>
+            <p>Linear Algebra Vector Checker - Educational Tool</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Feedback form handling
+            const feedbackForm = document.getElementById('feedbackForm');
+            const formMessage = document.getElementById('formMessage');
+            
+            feedbackForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // In a real application, you would send this data to a server
+                // For this demo, we'll just show a success message
+                
+                formMessage.textContent = "Thank you for your feedback! We'll get back to you soon.";
+                formMessage.style.display = 'block';
+                formMessage.style.backgroundColor = '#d4edda';
+                formMessage.style.color = '#155724';
+                
+                // Reset form after 5 seconds
+                setTimeout(() => {
+                    feedbackForm.reset();
+                    formMessage.style.display = 'none';
+                }, 5000);
+            });
+        });
+    </script>
+</body>
+</html>
