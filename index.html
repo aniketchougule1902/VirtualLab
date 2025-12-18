@@ -1,1 +1,215 @@
-a
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathVortexLabs | Linear Algebra Vector Checker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <div class="title">
+                    <h1>MathVortex<span>Labs</span></h1>
+                    <p class="subtitle">Linear Algebra Vector Checker</p>
+                </div>
+            </div>
+            <div class="header-controls">
+                <button id="themeToggle" class="btn-icon" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="helpBtn" class="btn-icon" title="Help">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <div class="app-description">
+                <p>A static web application for analyzing linear dependency/independency of vectors in 2D and 3D space using both mathematical and graphical approaches.</p>
+            </div>
+
+            <div class="dashboard">
+                <div class="control-panel card">
+                    <h2><i class="fas fa-sliders-h"></i> Control Panel</h2>
+                    
+                    <div class="dimension-selector">
+                        <h3>Select Dimension</h3>
+                        <div class="dimension-buttons">
+                            <button class="dimension-btn active" data-dim="2D">2D Vectors</button>
+                            <button class="dimension-btn" data-dim="3D">3D Vectors</button>
+                        </div>
+                    </div>
+                    
+                    <div class="vector-input-section">
+                        <h3>Input Vectors</h3>
+                        <div class="vector-input-container" id="vectorInputs">
+                            <!-- Vector inputs will be generated here -->
+                        </div>
+                        <div class="vector-controls">
+                            <button id="addVectorBtn" class="btn-secondary">
+                                <i class="fas fa-plus"></i> Add Vector
+                            </button>
+                            <button id="removeVectorBtn" class="btn-secondary" disabled>
+                                <i class="fas fa-minus"></i> Remove Vector
+                            </button>
+                            <button id="clearVectorsBtn" class="btn-secondary">
+                                <i class="fas fa-trash"></i> Clear All
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button id="analyzeBtn" class="btn-primary">
+                            <i class="fas fa-calculator"></i> Analyze Vectors
+                        </button>
+                        <button id="randomBtn" class="btn-secondary">
+                            <i class="fas fa-random"></i> Generate Random Vectors
+                        </button>
+                    </div>
+                    
+                    <div class="examples-section">
+                        <h3>Quick Examples</h3>
+                        <div class="example-buttons">
+                            <button class="example-btn" data-example="2D-dependent">2D Dependent</button>
+                            <button class="example-btn" data-example="2D-independent">2D Independent</button>
+                            <button class="example-btn" data-example="3D-dependent">3D Dependent</button>
+                            <button class="example-btn" data-example="3D-independent">3D Independent</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="results-section">
+                    <div class="mathematical-results card">
+                        <h2><i class="fas fa-calculator"></i> Mathematical Analysis</h2>
+                        <div class="results-placeholder" id="mathResults">
+                            <div class="placeholder-content">
+                                <i class="fas fa-calculator"></i>
+                                <p>Enter vectors and click "Analyze Vectors" to see mathematical results</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="graphical-results card">
+                        <h2><i class="fas fa-chart-line"></i> Graphical Representation</h2>
+                        <div class="graph-container">
+                            <div class="graph-placeholder" id="graphPlaceholder">
+                                <div class="placeholder-content">
+                                    <i class="fas fa-chart-line"></i>
+                                    <p>Visualization will appear here after analysis</p>
+                                </div>
+                            </div>
+                            <canvas id="graphCanvas" width="600" height="400"></canvas>
+                            <div class="graph-controls">
+                                <button id="rotateBtn" class="btn-icon" title="Rotate 3D View">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button id="exportGraphBtn" class="btn-icon" title="Export Graph">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button id="toggleLabelsBtn" class="btn-icon active" title="Toggle Labels">
+                                    <i class="fas fa-tag"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="export-section card">
+                <h2><i class="fas fa-file-export"></i> Export Results</h2>
+                <div class="export-controls">
+                    <button id="exportResultsBtn" class="btn-secondary">
+                        <i class="fas fa-file-text"></i> Export Analysis as Text
+                    </button>
+                    <button id="exportGraphImageBtn" class="btn-secondary">
+                        <i class="fas fa-image"></i> Export Graph as Image
+                    </button>
+                    <button id="copyResultsBtn" class="btn-secondary">
+                        <i class="fas fa-copy"></i> Copy Results to Clipboard
+                    </button>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>MathVortexLabs &copy; 2023 | Linear Algebra Vector Checker | Pure HTML, CSS & JavaScript</p>
+            <div class="footer-links">
+                <a href="#" id="aboutLink">About</a>
+                <a href="#" id="privacyLink">Privacy</a>
+                <a href="#" id="contactLink">Contact</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Help Modal -->
+    <div class="modal" id="helpModal">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h2><i class="fas fa-question-circle"></i> Help & Instructions</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="help-section">
+                    <h3>How to Use This Tool</h3>
+                    <ol>
+                        <li>Select 2D or 3D dimension for your vectors</li>
+                        <li>Add vectors by clicking "Add Vector" button</li>
+                        <li>Enter vector components in the input fields</li>
+                        <li>Click "Analyze Vectors" to check linear dependency</li>
+                        <li>View mathematical results and graphical representation</li>
+                        <li>Use export buttons to save your results</li>
+                    </ol>
+                </div>
+                <div class="help-section">
+                    <h3>Understanding Linear Dependency</h3>
+                    <p><strong>Linearly Independent:</strong> No vector in the set can be written as a linear combination of the others.</p>
+                    <p><strong>Linearly Dependent:</strong> At least one vector in the set can be written as a linear combination of the others.</p>
+                    <p>In 2D: Two vectors are dependent if they lie on the same line (collinear).</p>
+                    <p>In 3D: Three vectors are dependent if they lie on the same plane (coplanar).</p>
+                </div>
+                <div class="help-section">
+                    <h3>Mathematical Methods Used</h3>
+                    <ul>
+                        <li><strong>Rank:</strong> Maximum number of linearly independent vectors</li>
+                        <li><strong>Determinant:</strong> For square matrices, zero determinant indicates dependency</li>
+                        <li><strong>RREF:</strong> Reduced Row Echelon Form to identify pivot columns</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal" id="aboutModal">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h2><i class="fas fa-info-circle"></i> About MathVortexLabs</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>MathVortexLabs is a static web application for analyzing linear dependency/independency of vectors in 2D and 3D space using both mathematical and graphical approaches.</p>
+                <p>This tool is designed to help students and educators visualize and understand linear algebra concepts without requiring any external libraries or dependencies.</p>
+                <p><strong>Features:</strong></p>
+                <ul>
+                    <li>2D & 3D Vector Analysis</li>
+                    <li>Mathematical Approach (Rank, Determinant, RREF)</li>
+                    <li>Graphical Approach (Visual Representation)</li>
+                    <li>3D Plotting with interactive rotation</li>
+                    <li>Responsive Design</li>
+                    <li>Export Results & Plots</li>
+                </ul>
+                <p><strong>Technologies:</strong> Pure HTML5, CSS3, JavaScript</p>
+                <p>Created for educational purposes. All calculations are performed client-side.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
