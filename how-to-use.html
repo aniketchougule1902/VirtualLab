@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>How to Use | MathVortex Labs</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-project-diagram"></i>
+                <span class="logo-text">MathVortex<span class="logo-highlight">Labs</span></span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a href="aim.html" class="nav-link"><i class="fas fa-bullseye"></i> Aim</a></li>
+                <li class="nav-item"><a href="theory.html" class="nav-link"><i class="fas fa-book"></i> Theory</a></li>
+                <li class="nav-item"><a href="how-to-use.html" class="nav-link active"><i class="fas fa-question-circle"></i> How to Use</a></li>
+                <li class="nav-item"><a href="references.html" class="nav-link"><i class="fas fa-link"></i> References</a></li>
+                <li class="nav-item"><a href="contributors.html" class="nav-link"><i class="fas fa-users"></i> Contributors</a></li>
+                <li class="nav-item"><a href="feedback.html" class="nav-link"><i class="fas fa-comment"></i> Feedback</a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <header class="page-header">
+            <h1>How to Use the Vector Checker</h1>
+            <p class="subtitle">Step-by-step guide to using the Linear Algebra Vector Checker tool</p>
+        </header>
+
+        <div class="page-content">
+            <div class="content-section">
+                <h2>Getting Started</h2>
+                <p>The Linear Algebra Vector Checker is designed to be intuitive and easy to use. Follow these steps to analyze vectors for linear dependency/independency.</p>
+                
+                <div class="note-box">
+                    <h4>System Requirements</h4>
+                    <p>This tool runs entirely in your web browser and requires:</p>
+                    <ul>
+                        <li>A modern web browser (Chrome, Firefox, Safari, Edge)</li>
+                        <li>JavaScript enabled</li>
+                        <li>No additional software or plugins needed</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Step-by-Step Guide</h2>
+                
+                <h3>Step 1: Select Dimension</h3>
+                <div class="example-box">
+                    <h4>Choose between 2D and 3D</h4>
+                    <p>At the top of the Control Panel, you'll find two buttons:</p>
+                    <ul>
+                        <li><strong>2D Vectors:</strong> For vectors in ℝ² (two-dimensional space)</li>
+                        <li><strong>3D Vectors:</strong> For vectors in ℝ³ (three-dimensional space)</li>
+                    </ul>
+                    <p>Click the appropriate button based on your vectors' dimension. The interface will adjust accordingly.</p>
+                </div>
+                
+                <h3>Step 2: Input Your Vectors</h3>
+                <div class="example-box">
+                    <h4>Adding and Modifying Vectors</h4>
+                    <ol>
+                        <li><strong>Default Vectors:</strong> The tool starts with two zero vectors</li>
+                        <li><strong>Add Vector:</strong> Click the "Add Vector" button to add more vectors</li>
+                        <li><strong>Remove Vector:</strong> Click "Remove Vector" to delete the last vector</li>
+                        <li><strong>Enter Components:</strong> Click in the input fields and enter numerical values for each vector component</li>
+                        <li><strong>Clear All:</strong> Use "Clear All" to reset all vectors to zero</li>
+                    </ol>
+                    <p><strong>Maximum vectors:</strong> 5 for 2D, 4 for 3D (due to visualization constraints)</p>
+                </div>
+                
+                <h3>Step 3: Analyze Vectors</h3>
+                <div class="example-box">
+                    <h4>Perform Linear Dependency Check</h4>
+                    <p>Once you've entered your vectors, click the <strong>"Analyze Vectors"</strong> button. The tool will:</p>
+                    <ol>
+                        <li>Calculate mathematical results (rank, determinant, RREF)</li>
+                        <li>Display whether vectors are linearly dependent or independent</li>
+                        <li>Generate a visual representation of your vectors</li>
+                    </ol>
+                </div>
+                
+                <h3>Step 4: Interpret Results</h3>
+                <div class="example-box">
+                    <h4>Understanding the Output</h4>
+                    <p>The results are displayed in two main sections:</p>
+                    <ul>
+                        <li><strong>Mathematical Analysis:</strong> Shows rank, determinant, RREF, and dependency conclusion</li>
+                        <li><strong>Graphical Representation:</strong> Visual plot of your vectors in 2D or 3D space</li>
+                    </ul>
+                    <p>Refer to the Theory page for help interpreting these results.</p>
+                </div>
+                
+                <h3>Step 5: Explore Additional Features</h3>
+                <div class="example-box">
+                    <h4>Tool Features</h4>
+                    <ul>
+                        <li><strong>Quick Examples:</strong> Try pre-loaded examples to see the tool in action</li>
+                        <li><strong>Generate Random:</strong> Create random vectors for practice</li>
+                        <li><strong>Graph Controls:</strong> Rotate 3D view, toggle labels, export graph</li>
+                        <li><strong>Export Results:</strong> Save analysis as text or image</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Practical Examples</h2>
+                
+                <h3>Example 1: Checking 2D Vectors</h3>
+                <div class="example-box">
+                    <h4>Task: Determine if v₁ = (1, 2) and v₂ = (2, 4) are linearly independent</h4>
+                    <ol>
+                        <li>Select "2D Vectors"</li>
+                        <li>Enter "1" in the first vector's x-component, "2" in its y-component</li>
+                        <li>Enter "2" in the second vector's x-component, "4" in its y-component</li>
+                        <li>Click "Analyze Vectors"</li>
+                        <li><strong>Result:</strong> The vectors are linearly dependent (v₂ = 2v₁)</li>
+                    </ol>
+                </div>
+                
+                <h3>Example 2: Checking 3D Vectors</h3>
+                <div class="example-box">
+                    <h4>Task: Determine if v₁ = (1, 0, 0), v₂ = (0, 1, 0), v₃ = (0, 0, 1) are linearly independent</h4>
+                    <ol>
+                        <li>Select "3D Vectors"</li>
+                        <li>Add a third vector using "Add Vector" button</li>
+                        <li>Enter vectors as: (1,0,0), (0,1,0), (0,0,1)</li>
+                        <li>Click "Analyze Vectors"</li>
+                        <li><strong>Result:</strong> The vectors are linearly independent (standard basis of ℝ³)</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Graph Controls Guide</h2>
+                
+                <div class="definition-box">
+                    <h4>For 2D Graphs</h4>
+                    <ul>
+                        <li><strong>Coordinate System:</strong> Standard Cartesian coordinates with origin at center</li>
+                        <li><strong>Vector Display:</strong> Vectors shown as arrows from origin</li>
+                        <li><strong>Colors:</strong> Each vector has a distinct color for easy identification</li>
+                    </ul>
+                </div>
+                
+                <div class="definition-box">
+                    <h4>For 3D Graphs</h4>
+                    <ul>
+                        <li><strong>Rotation:</strong> Click the rotate button for automatic 3D rotation</li>
+                        <li><strong>Perspective:</strong> 3D perspective view with depth cues</li>
+                        <li><strong>Axes:</strong> X (red), Y (green), Z (blue) axes shown for reference</li>
+                        <li><strong>Labels:</strong> Toggle labels on/off with the label button</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Troubleshooting</h2>
+                
+                <div class="note-box">
+                    <h4>Common Issues and Solutions</h4>
+                    <p><strong>Problem:</strong> Graph not displaying properly<br>
+                    <strong>Solution:</strong> Ensure you're using a modern browser. Try refreshing the page.</p>
+                    
+                    <p><strong>Problem:</strong> Can't add more vectors<br>
+                    <strong>Solution:</strong> Maximum vectors: 5 for 2D, 4 for 3D. Remove some vectors first.</p>
+                    
+                    <p><strong>Problem:</strong> Results seem incorrect<br>
+                    <strong>Solution:</strong> Check your vector entries for typos. Try the example vectors to verify tool is working.</p>
+                    
+                    <p><strong>Problem:</strong> 3D rotation not working<br>
+                    <strong>Solution:</strong> Ensure you've selected 3D mode and analyzed vectors first.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Tips for Effective Use</h2>
+                
+                <div class="definition-box">
+                    <h4>Learning Strategies</h4>
+                    <ol>
+                        <li><strong>Start with examples:</strong> Use the Quick Examples to see the tool in action</li>
+                        <li><strong>Compare results:</strong> Enter known dependent and independent sets to compare outputs</li>
+                        <li><strong>Visualize:</strong> Pay attention to the graphical representation alongside mathematical results</li>
+                        <li><strong>Practice:</strong> Create your own vectors and predict the outcome before analyzing</li>
+                        <li><strong>Cross-verify:</strong> Use the tool to check your manual calculations</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="example-box">
+                    <h4>Q: Can I use this tool for vectors in higher dimensions (ℝ⁴, ℝ⁵, etc.)?</h4>
+                    <p>A: Currently, the tool only supports 2D and 3D vectors. Higher dimensions are planned for future versions.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Q: Are complex numbers supported?</h4>
+                    <p>A: No, this tool only works with real numbers. Complex vector spaces are not currently supported.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Q: Can I save my work and return to it later?</h4>
+                    <p>A: You can export your results as text or images, but the tool doesn't currently save sessions automatically.</p>
+                </div>
+                
+                <div class="example-box">
+                    <h4>Q: Is this tool suitable for exams or assignments?</h4>
+                    <p>A: This is an educational tool for learning and verification. Always follow your instructor's guidelines regarding tool usage for assessments.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>MathVortex Labs</h4>
+                <p>An educational tool for linear algebra concepts</p>
+                <p>Pure HTML, CSS & JavaScript</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="theory.html"><i class="fas fa-chevron-right"></i> Theory</a></li>
+                    <li><a href="how-to-use.html"><i class="fas fa-chevron-right"></i> How to Use</a></li>
+                    <li><a href="feedback.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-envelope"></i> contact@mathvortexlabs.com</p>
+                <p><i class="fas fa-globe"></i> www.mathvortexlabs.com</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 MathVortex Labs. All rights reserved.</p>
+            <p>Linear Algebra Vector Checker - Educational Tool</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
