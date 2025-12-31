@@ -1,4 +1,4 @@
-# MathVortexLabs : A Vector Dependancy And Independancy Calculator
+#  : A Vector Dependancy And Independancy Calculator
 
 A static web application for analyzing linear dependency/independency of vectors in 2D and 3D space using both mathematical and graphical approaches.
 
