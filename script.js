@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initAlertSystem();
     
     // Show welcome message
-    showAlert('info', 'Welcome to MathVortex Labs!', 'Start by entering vectors or trying the quick examples.');
+    showAlert('info', 'Welcome to Virtual Lab!', 'Enter vectors or use the quick examples to get started.');
     
     // Initialize vector inputs
     vectors = Array(3).fill().map(() => Array(currentDimension).fill(0));
@@ -783,25 +783,41 @@ function findDependencyRelation(matrix) {
 }
 
 function displayMathematicalResults(results) {
+    const isIndependent = results.isLinearlyIndependent;
+    const bannerClass = isIndependent ? 'independent-banner' : 'dependent-banner';
+    const bannerIcon = isIndependent ? 'check-circle' : 'exclamation-circle';
+    const bannerTitle = isIndependent ? 'Linearly Independent' : 'Linearly Dependent';
+    const bannerSub = isIndependent
+        ? `Rank ${results.rank} = ${vectors.length} vector(s) — no vector is a combination of others`
+        : `Rank ${results.rank} < ${vectors.length} vector(s) — at least one vector is redundant`;
+
     let html = `
-        <div class="result-item">
-            <div class="result-title"><i class="fas fa-cube"></i> Dimension</div>
-            <div class="result-value">${results.dimension}D</div>
-            <p>Analysis in ℝ<sup>${results.dimension}</sup> space</p>
-        </div>
-        
-        <div class="result-item">
-            <div class="result-title"><i class="fas fa-layer-group"></i> Rank of Matrix</div>
-            <div class="result-value">${results.rank} / ${vectors.length}</div>
-            <p>The maximum number of linearly independent vectors in the set.</p>
-        </div>
-        
-        <div class="result-item">
-            <div class="result-title"><i class="fas fa-link"></i> Linear Dependency</div>
-            <div class="result-value ${results.isLinearlyIndependent ? 'independent' : 'dependent'}">
-                ${results.isLinearlyIndependent ? 'LINEARLY INDEPENDENT' : 'LINEARLY DEPENDENT'}
+        <div class="result-summary-banner ${bannerClass}">
+            <i class="fas fa-${bannerIcon}"></i>
+            <div class="banner-text">
+                <div class="banner-title">${bannerTitle}</div>
+                <div class="banner-sub">${bannerSub}</div>
             </div>
-            <p>${results.isLinearlyIndependent ? 
+        </div>
+
+        <div class="result-item">
+            <div class="result-title"><i class="fas fa-cube"></i> Space &amp; Dimension</div>
+            <div class="result-value">ℝ<sup>${results.dimension}</sup></div>
+            <p>Analyzing ${vectors.length} vector(s) in ${results.dimension}-dimensional space.</p>
+        </div>
+        
+        <div class="result-item">
+            <div class="result-title"><i class="fas fa-layer-group"></i> Matrix Rank</div>
+            <div class="result-value">${results.rank} <span style="font-size:0.8em;font-weight:500;color:var(--neutral-gray-dark)">/ ${vectors.length}</span></div>
+            <p>The rank is the maximum number of linearly independent vectors in the set. Max possible in ℝ<sup>${results.dimension}</sup> is ${results.dimension}.</p>
+        </div>
+        
+        <div class="result-item" style="border-left-color: ${isIndependent ? 'var(--accent-green)' : 'var(--accent-red)'}">
+            <div class="result-title"><i class="fas fa-link"></i> Linear Dependency</div>
+            <div class="result-value ${isIndependent ? 'independent' : 'dependent'}">
+                ${isIndependent ? '✓ LINEARLY INDEPENDENT' : '✗ LINEARLY DEPENDENT'}
+            </div>
+            <p>${isIndependent ? 
                 'No vector in the set can be written as a linear combination of the others.' : 
                 'At least one vector in the set can be written as a linear combination of the others.'}</p>
         </div>
@@ -809,13 +825,14 @@ function displayMathematicalResults(results) {
     
     // Add determinant if available (square matrix)
     if (results.determinant !== null) {
+        const detIsZero = Math.abs(results.determinant) < 1e-10;
         html += `
             <div class="result-item">
                 <div class="result-title"><i class="fas fa-divide"></i> Determinant</div>
-                <div class="result-value">${results.determinant.toFixed(6)}</div>
-                <p>${Math.abs(results.determinant) < 1e-10 ? 
-                    'Zero determinant indicates linear dependency.' : 
-                    'Non-zero determinant indicates linear independence.'}</p>
+                <div class="result-value ${detIsZero ? 'dependent' : 'independent'}">${results.determinant.toFixed(4)}</div>
+                <p>${detIsZero ? 
+                    'det = 0 confirms linear dependency (matrix is singular).' : 
+                    'det ≠ 0 confirms linear independence (matrix is invertible).'}</p>
             </div>
         `;
     }
@@ -824,22 +841,23 @@ function displayMathematicalResults(results) {
     if (results.basisVectors.length > 0) {
         html += `
             <div class="result-item">
-                <div class="result-title"><i class="fas fa-vector-square"></i> Basis Vectors (${results.basisVectors.length} found)</div>
+                <div class="result-title"><i class="fas fa-vector-square"></i> Basis Vectors (${results.basisVectors.length})</div>
                 <div class="matrix-display">
         `;
         
         results.basisVectors.forEach((vector, idx) => {
             html += `<div class="matrix-row">`;
-            html += `<div class="matrix-cell" style="min-width: 80px; background-color: #f8f9fa; border-right: none;">Basis ${idx + 1}:</div>`;
+            html += `<div class="matrix-cell" style="min-width:90px;background:linear-gradient(135deg,rgba(14,165,233,0.1),rgba(14,165,233,0.05));font-size:0.8rem;color:var(--secondary-teal-dark)">b${idx + 1}</div>`;
             vector.forEach(component => {
-                html += `<div class="matrix-cell">${component.toFixed(2)}</div>`;
+                const val = parseFloat(component.toFixed(4));
+                html += `<div class="matrix-cell">${val}</div>`;
             });
             html += `</div>`;
         });
         
         html += `
                 </div>
-                <p>These vectors form a basis for the subspace spanned by the input vectors.</p>
+                <p style="margin-top:var(--spacing-sm)">These vectors form a basis for the subspace spanned by the input vectors.</p>
             </div>
         `;
     }
@@ -847,21 +865,24 @@ function displayMathematicalResults(results) {
     // Add RREF matrix
     html += `
         <div class="result-item">
-            <div class="result-title"><i class="fas fa-th"></i> Reduced Row Echelon Form (RREF)</div>
+            <div class="result-title"><i class="fas fa-th"></i> RREF — Reduced Row Echelon Form</div>
             <div class="matrix-display">
     `;
     
     results.rrefMatrix.forEach(row => {
         html += `<div class="matrix-row">`;
         row.forEach(cell => {
-            html += `<div class="matrix-cell">${cell.toFixed(2)}</div>`;
+            const val = parseFloat(cell.toFixed(4));
+            const isPivot = Math.abs(val - 1) < 1e-8 || (Math.abs(val) > 1e-8 && val !== 0);
+            const isOne = Math.abs(val - 1) < 1e-8;
+            html += `<div class="matrix-cell${isOne ? ' pivot-cell' : ''}">${val}</div>`;
         });
         html += `</div>`;
     });
     
     html += `
             </div>
-            <p>Pivot columns (with leading 1's) correspond to linearly independent vectors.</p>
+            <p style="margin-top:var(--spacing-sm)">Columns with a leading 1 (highlighted) correspond to linearly independent vectors (pivot columns).</p>
         </div>
     `;
     
@@ -870,8 +891,8 @@ function displayMathematicalResults(results) {
         html += `
             <div class="dimension-info">
                 <h4><i class="fas fa-info-circle"></i> Higher Dimension Note</h4>
-                <p>For ${currentDimension}D vectors, graphical representation is not available. The analysis is performed mathematically using rank, determinant, and RREF methods.</p>
-                <p>Maximum possible rank in ℝ<sup>${currentDimension}</sup> is ${currentDimension}.</p>
+                <p>For ${currentDimension}D vectors, graphical representation is not available. Analysis is performed purely algebraically using rank, RREF, and determinant methods.</p>
+                <p>Maximum possible rank in ℝ<sup>${currentDimension}</sup> is <strong>${currentDimension}</strong>.</p>
             </div>
         `;
     }
@@ -879,7 +900,7 @@ function displayMathematicalResults(results) {
     // Add dependency relation if dependent
     if (results.dependencyRelation) {
         html += `
-            <div class="result-item">
+            <div class="result-item" style="border-left-color:var(--accent-orange)">
                 <div class="result-title"><i class="fas fa-project-diagram"></i> Dependency Relation</div>
                 <p>${results.dependencyRelation}</p>
             </div>
@@ -931,90 +952,182 @@ function drawGraph() {
 }
 
 function draw2DGraph(ctx, width, height) {
-    const padding = 50;
+    const padding = 60;
     const graphWidth = width - 2 * padding;
     const graphHeight = height - 2 * padding;
-    
-    // Draw coordinate system
-    ctx.strokeStyle = 'rgba(44, 62, 80, 0.3)';
-    ctx.lineWidth = 1;
-    
-    // X axis
-    ctx.beginPath();
-    ctx.moveTo(padding, height / 2);
-    ctx.lineTo(width - padding, height / 2);
-    ctx.stroke();
-    
-    // Y axis
-    ctx.beginPath();
-    ctx.moveTo(width / 2, padding);
-    ctx.lineTo(width / 2, height - padding);
-    ctx.stroke();
-    
-    // Axis labels
-    ctx.fillStyle = 'rgba(44, 62, 80, 0.7)';
-    ctx.font = '14px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('x', width - padding + 10, height / 2 - 5);
-    ctx.fillText('y', width / 2 + 10, padding - 10);
-    
-    // Find max vector magnitude for scaling
+    const originX = width / 2;
+    const originY = height / 2;
+
+    // Background
+    ctx.fillStyle = '#f8fafc';
+    ctx.fillRect(0, 0, width, height);
+
+    // Find max magnitude for scaling
     let maxMagnitude = 0;
     vectors.forEach(vector => {
         const magnitude = Math.sqrt(vector[0] ** 2 + vector[1] ** 2);
         if (magnitude > maxMagnitude) maxMagnitude = magnitude;
     });
-    
-    const scale = maxMagnitude > 0 ? Math.min(graphWidth, graphHeight) / 2 / maxMagnitude * 0.8 : 1;
-    
+    if (maxMagnitude === 0) maxMagnitude = 1;
+
+    const scale = Math.min(graphWidth, graphHeight) / 2 / maxMagnitude * 0.72;
+    const gridStep = maxMagnitude / 3;
+    const gridPixelStep = gridStep * scale;
+
+    // Draw grid lines
+    ctx.strokeStyle = 'rgba(148,163,184,0.3)';
+    ctx.lineWidth = 1;
+    for (let i = -4; i <= 4; i++) {
+        const px = originX + i * gridPixelStep;
+        const py = originY + i * gridPixelStep;
+        ctx.beginPath();
+        ctx.moveTo(px, padding);
+        ctx.lineTo(px, height - padding);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(padding, py);
+        ctx.lineTo(width - padding, py);
+        ctx.stroke();
+    }
+
+    // Draw X axis
+    ctx.strokeStyle = 'rgba(30,58,95,0.5)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(padding, originY);
+    ctx.lineTo(width - padding, originY);
+    ctx.stroke();
+
+    // Draw Y axis
+    ctx.beginPath();
+    ctx.moveTo(originX, padding);
+    ctx.lineTo(originX, height - padding);
+    ctx.stroke();
+
+    // Axis arrows
+    ctx.fillStyle = 'rgba(30,58,95,0.5)';
+    // X arrow
+    ctx.beginPath();
+    ctx.moveTo(width - padding, originY);
+    ctx.lineTo(width - padding - 8, originY - 4);
+    ctx.lineTo(width - padding - 8, originY + 4);
+    ctx.closePath();
+    ctx.fill();
+    // Y arrow
+    ctx.beginPath();
+    ctx.moveTo(originX, padding);
+    ctx.lineTo(originX - 4, padding + 8);
+    ctx.lineTo(originX + 4, padding + 8);
+    ctx.closePath();
+    ctx.fill();
+
+    // Axis labels
+    ctx.fillStyle = 'rgba(30,58,95,0.7)';
+    ctx.font = 'bold 13px Inter, Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('x', width - padding + 14, originY + 4);
+    ctx.fillText('y', originX + 4, padding - 10);
+
+    // Tick marks & numbers
+    ctx.fillStyle = '#64748b';
+    ctx.font = '10px Inter, Arial';
+    ctx.textAlign = 'center';
+    for (let i = -3; i <= 3; i++) {
+        if (i === 0) continue;
+        const tickVal = (i * gridStep).toFixed(1);
+        const px = originX + i * gridPixelStep;
+        const py = originY + i * gridPixelStep;
+        // X tick
+        ctx.strokeStyle = 'rgba(30,58,95,0.4)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(px, originY - 4);
+        ctx.lineTo(px, originY + 4);
+        ctx.stroke();
+        ctx.fillText(tickVal, px, originY + 16);
+        // Y tick
+        ctx.beginPath();
+        ctx.moveTo(originX - 4, py);
+        ctx.lineTo(originX + 4, py);
+        ctx.stroke();
+        ctx.textAlign = 'right';
+        ctx.fillText(-parseFloat(tickVal), originX - 8, py + 4);
+        ctx.textAlign = 'center';
+    }
+
+    // Origin label
+    ctx.fillStyle = 'rgba(30,58,95,0.6)';
+    ctx.font = '11px Inter, Arial';
+    ctx.textAlign = 'right';
+    ctx.fillText('O', originX - 6, originY + 14);
+
+    // Vector colors (accessible palette)
+    const colors = ['#2563eb', '#dc2626', '#16a34a', '#d97706', '#7c3aed', '#0ea5e9', '#db2777'];
+
     // Draw vectors
-    const colors = ['#2c3e50', '#e74c3c', '#3498db', '#2ecc71', '#9b59b6'];
-    
     vectors.forEach((vector, index) => {
         const x = vector[0] * scale;
-        const y = -vector[1] * scale; // Invert y for canvas coordinate system
-        
-        const startX = width / 2;
-        const startY = height / 2;
-        const endX = startX + x;
-        const endY = startY + y;
-        
-        // Draw vector line
+        const y = -vector[1] * scale;
+        const endX = originX + x;
+        const endY = originY + y;
+
+        // Shadow effect for depth
+        ctx.save();
+        ctx.shadowColor = 'rgba(0,0,0,0.15)';
+        ctx.shadowBlur = 4;
         ctx.strokeStyle = colors[index % colors.length];
-        ctx.lineWidth = 3;
+        ctx.lineWidth = 2.5;
         ctx.beginPath();
-        ctx.moveTo(startX, startY);
+        ctx.moveTo(originX, originY);
         ctx.lineTo(endX, endY);
         ctx.stroke();
-        
-        // Draw arrowhead
-        drawArrowhead(ctx, startX, startY, endX, endY, 10, colors[index % colors.length]);
-        
-        // Draw vector label
+        ctx.restore();
+
+        drawArrowhead(ctx, originX, originY, endX, endY, 10, colors[index % colors.length]);
+
         if (showLabels) {
             ctx.fillStyle = colors[index % colors.length];
-            ctx.font = 'bold 16px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText(`v${index + 1}`, endX + 15, endY + 5);
+            ctx.font = 'bold 13px Inter, Arial';
+            ctx.textAlign = 'left';
+            const labelOffset = 14;
+            ctx.fillText(`v${index + 1}(${vector[0]},${vector[1]})`, endX + labelOffset, endY - 4);
         }
     });
-    
-    // Draw origin label
-    ctx.fillStyle = 'rgba(44, 62, 80, 0.7)';
-    ctx.font = '12px Arial';
-    ctx.fillText('O', width / 2 - 10, height / 2 + 20);
+
+    // Draw legend below
+    drawGraphLegend(ctx, width, height, colors);
+}
+
+function drawGraphLegend(ctx, width, height, colors) {
+    const legendX = 10;
+    const legendY = height - 10;
+    const itemWidth = 90;
+    const totalWidth = Math.min(vectors.length, 7) * itemWidth;
+    const startX = Math.max(legendX, (width - totalWidth) / 2);
+
+    ctx.font = 'bold 11px Inter, Arial';
+    vectors.forEach((vector, index) => {
+        if (index >= 7) return;
+        const lx = startX + index * itemWidth;
+        const ly = legendY - 18;
+        // Dot
+        ctx.fillStyle = colors[index % colors.length];
+        ctx.beginPath();
+        ctx.arc(lx + 6, ly + 6, 5, 0, Math.PI * 2);
+        ctx.fill();
+        // Label
+        ctx.fillStyle = '#334155';
+        ctx.textAlign = 'left';
+        ctx.fillText(`v${index + 1}`, lx + 16, ly + 10);
+    });
 }
 
 function draw3DGraph(ctx, width, height) {
-    const padding = 50;
     const centerX = width / 2;
     const centerY = height / 2;
     
-    // Clear with a subtle gradient
-    const gradient = ctx.createLinearGradient(0, 0, width, height);
-    gradient.addColorStop(0, 'rgba(248, 249, 250, 0.5)');
-    gradient.addColorStop(1, 'rgba(236, 240, 241, 0.5)');
-    ctx.fillStyle = gradient;
+    // Background
+    ctx.fillStyle = '#f8fafc';
     ctx.fillRect(0, 0, width, height);
     
     // Convert rotation angles to radians
@@ -1022,7 +1135,6 @@ function draw3DGraph(ctx, width, height) {
     const radY = graphRotation.y * Math.PI / 180;
     const radZ = graphRotation.z * Math.PI / 180;
     
-    // Rotation matrices
     const rotX = [
         [1, 0, 0],
         [0, Math.cos(radX), -Math.sin(radX)],
@@ -1041,16 +1153,12 @@ function draw3DGraph(ctx, width, height) {
         [0, 0, 1]
     ];
     
-    // Combine rotations (Z * Y * X)
     const multiplyMatrices = (a, b) => {
         const result = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 3; j++) {
-                for (let k = 0; k < 3; k++) {
+        for (let i = 0; i < 3; i++)
+            for (let j = 0; j < 3; j++)
+                for (let k = 0; k < 3; k++)
                     result[i][j] += a[i][k] * b[k][j];
-                }
-            }
-        }
         return result;
     };
     
@@ -1062,87 +1170,134 @@ function draw3DGraph(ctx, width, height) {
         const magnitude = Math.sqrt(vector[0] ** 2 + vector[1] ** 2 + vector[2] ** 2);
         if (magnitude > maxMagnitude) maxMagnitude = magnitude;
     });
+    if (maxMagnitude === 0) maxMagnitude = 1;
     
-    const scale = maxMagnitude > 0 ? Math.min(width, height) / 3 / maxMagnitude * 0.8 : 1;
+    const scale = Math.min(width, height) / 3 / maxMagnitude * 0.75;
     
-    // Project 3D point to 2D with perspective
     const project = (x, y, z) => {
-        // Apply rotation
         const rx = rotation[0][0] * x + rotation[0][1] * y + rotation[0][2] * z;
         const ry = rotation[1][0] * x + rotation[1][1] * y + rotation[1][2] * z;
         const rz = rotation[2][0] * x + rotation[2][1] * y + rotation[2][2] * z;
-        
-        // Apply perspective
         const distance = 5;
         const factor = distance / (distance + rz);
-        const px = rx * factor * scale;
-        const py = ry * factor * scale;
-        
         return {
-            x: centerX + px,
-            y: centerY - py, // Invert y for canvas coordinate system
+            x: centerX + rx * factor * scale,
+            y: centerY - ry * factor * scale,
             depth: rz
         };
     };
     
+    // Draw grid plane (XZ) for visual grounding
+    const gridLines = 3;
+    const gridSpacing = maxMagnitude / 2;
+    ctx.strokeStyle = 'rgba(148,163,184,0.2)';
+    ctx.lineWidth = 1;
+    for (let i = -gridLines; i <= gridLines; i++) {
+        const p1 = project(i * gridSpacing, 0, -gridLines * gridSpacing);
+        const p2 = project(i * gridSpacing, 0,  gridLines * gridSpacing);
+        const p3 = project(-gridLines * gridSpacing, 0, i * gridSpacing);
+        const p4 = project( gridLines * gridSpacing, 0, i * gridSpacing);
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(p3.x, p3.y);
+        ctx.lineTo(p4.x, p4.y);
+        ctx.stroke();
+    }
+    
     // Draw coordinate axes
+    const axisLength = maxMagnitude * 1.3;
     const axes = [
-        { start: [0, 0, 0], end: [2, 0, 0], color: '#e74c3c', label: 'x' },
-        { start: [0, 0, 0], end: [0, 2, 0], color: '#2ecc71', label: 'y' },
-        { start: [0, 0, 0], end: [0, 0, 2], color: '#3498db', label: 'z' }
+        { end: [axisLength, 0, 0], color: '#dc2626', label: 'x' },
+        { end: [0, axisLength, 0], color: '#16a34a', label: 'y' },
+        { end: [0, 0, axisLength], color: '#2563eb', label: 'z' }
     ];
     
     axes.forEach(axis => {
-        const start = project(...axis.start);
+        const start = project(0, 0, 0);
         const end = project(...axis.end);
-        
-        // Draw axis line
         ctx.strokeStyle = axis.color;
         ctx.lineWidth = 2;
+        ctx.setLineDash([]);
         ctx.beginPath();
         ctx.moveTo(start.x, start.y);
         ctx.lineTo(end.x, end.y);
         ctx.stroke();
-        
-        // Draw axis label
+        // Arrowhead
+        drawArrowhead(ctx, start.x, start.y, end.x, end.y, 8, axis.color);
         if (showLabels) {
             ctx.fillStyle = axis.color;
-            ctx.font = 'bold 16px Arial';
-            ctx.fillText(axis.label, end.x + 10, end.y + 10);
+            ctx.font = 'bold 13px Inter, Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(axis.label, end.x + 12, end.y + 4);
         }
     });
     
-    // Draw vectors
-    const colors = ['#2c3e50', '#e67e22', '#9b59b6', '#1abc9c'];
+    // Negative axis stubs (dashed)
+    const negAxes = [
+        { end: [-axisLength * 0.5, 0, 0], color: '#dc2626' },
+        { end: [0, -axisLength * 0.5, 0], color: '#16a34a' },
+        { end: [0, 0, -axisLength * 0.5], color: '#2563eb' }
+    ];
+    ctx.setLineDash([4, 4]);
+    negAxes.forEach(axis => {
+        const start = project(0, 0, 0);
+        const end = project(...axis.end);
+        ctx.strokeStyle = axis.color + '60';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(start.x, start.y);
+        ctx.lineTo(end.x, end.y);
+        ctx.stroke();
+    });
+    ctx.setLineDash([]);
+    
+    // Draw vectors (accessible palette)
+    const colors = ['#1e3a5f', '#d97706', '#7c3aed', '#0ea5e9', '#db2777', '#059669'];
     
     vectors.forEach((vector, index) => {
         const start = project(0, 0, 0);
         const end = project(vector[0], vector[1], vector[2]);
         
-        // Draw vector line
+        ctx.save();
+        ctx.shadowColor = 'rgba(0,0,0,0.18)';
+        ctx.shadowBlur = 5;
         ctx.strokeStyle = colors[index % colors.length];
-        ctx.lineWidth = 3;
+        ctx.lineWidth = 2.5;
         ctx.beginPath();
         ctx.moveTo(start.x, start.y);
         ctx.lineTo(end.x, end.y);
         ctx.stroke();
+        ctx.restore();
         
-        // Draw arrowhead
         drawArrowhead(ctx, start.x, start.y, end.x, end.y, 10, colors[index % colors.length]);
         
-        // Draw vector label
         if (showLabels) {
             ctx.fillStyle = colors[index % colors.length];
-            ctx.font = 'bold 16px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText(`v${index + 1}`, end.x + 15, end.y + 5);
+            ctx.font = 'bold 12px Inter, Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText(`v${index + 1}`, end.x + 10, end.y - 4);
         }
     });
     
-    // Draw origin label
-    ctx.fillStyle = 'rgba(44, 62, 80, 0.7)';
-    ctx.font = '12px Arial';
-    ctx.fillText('O', centerX - 15, centerY + 20);
+    // Origin dot
+    const o = project(0, 0, 0);
+    ctx.fillStyle = '#1e3a5f';
+    ctx.beginPath();
+    ctx.arc(o.x, o.y, 4, 0, Math.PI * 2);
+    ctx.fill();
+    if (showLabels) {
+        ctx.fillStyle = 'rgba(30,58,95,0.7)';
+        ctx.font = '11px Inter, Arial';
+        ctx.textAlign = 'right';
+        ctx.fillText('O', o.x - 6, o.y + 14);
+    }
+    
+    // Legend
+    const legendColors = ['#1e3a5f', '#d97706', '#7c3aed', '#0ea5e9', '#db2777', '#059669'];
+    drawGraphLegend(ctx, width, height, legendColors);
 }
 
 function drawArrowhead(ctx, fromX, fromY, toX, toY, size, color) {
@@ -1312,7 +1467,7 @@ function exportResults() {
     
     try {
         const results = calculateLinearAlgebraResults();
-        let text = `Linear Algebra Vector Analysis - MathVortex Labs\n`;
+        let text = `Linear Algebra Vector Analysis — Virtual Lab\n`;
         text += `Generated: ${new Date().toLocaleString()}\n\n`;
         text += `Dimension: ${results.dimension}D\n`;
         text += `Number of vectors: ${vectors.length}\n\n`;
