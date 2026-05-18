@@ -1279,6 +1279,65 @@ a:hover {
     font-weight: 700;
 }
 
+
+.quiz-options {
+    display: grid;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-md) 0;
+}
+
+.quiz-option {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--neutral-gray);
+    border-radius: var(--radius-sm);
+    background: var(--neutral-white);
+    cursor: pointer;
+}
+
+.quiz-option input {
+    margin-top: 0.2rem;
+}
+
+.quiz-option span {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.quiz-check-btn {
+    margin-top: var(--spacing-xs);
+}
+
+.quiz-feedback {
+    margin-top: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.quiz-feedback.correct {
+    color: #15803d;
+}
+
+.quiz-feedback.incorrect {
+    color: #b91c1c;
+}
+
+.quiz-feedback.warning {
+    color: #b45309;
+}
+
+.quiz-solution {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-sm);
+    border-top: 1px dashed var(--neutral-gray);
+}
+
+.quiz-solution-title {
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+}
+
 .note-box {
     background-color: #fffbeb;
     border: 1px solid #fde68a;
@@ -1812,6 +1871,11 @@ textarea.form-control {
     
     .definition-box, .example-box, .note-box {
         padding: var(--spacing-md);
+    }
+
+
+    .quiz-option {
+        padding: var(--spacing-sm);
     }
     
     .team-grid {
