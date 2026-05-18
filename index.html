@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Linear Algebra Vector Checker | VirtualLab</title>
+    <title>Virtual Lab | Linear Algebra Vector Checker</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <i class="fas fa-project-diagram"></i>
                 <span class="logo-text">Virtual<span class="logo-highlight">Lab</span></span>
             </div>
-            
+
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a href="simulation.html" class="nav-link"><i class="fas fa-flask"></i> Simulation</a></li>
                 <li class="nav-item"><a href="aim.html" class="nav-link"><i class="fas fa-bullseye"></i> Aim</a></li>
                 <li class="nav-item"><a href="theory.html" class="nav-link"><i class="fas fa-book"></i> Theory</a></li>
-                <li class="nav-item"><a href="how-to-use.html" class="nav-link"><i class="fas fa-question-circle"></i>Simulink</a></li>
+                <li class="nav-item"><a href="how-to-use.html" class="nav-link"><i class="fas fa-circle-question"></i> How To Use</a></li>
                 <li class="nav-item"><a href="references.html" class="nav-link"><i class="fas fa-link"></i> References</a></li>
                 <li class="nav-item"><a href="contributors.html" class="nav-link"><i class="fas fa-users"></i> Contributors</a></li>
                 <li class="nav-item"><a href="feedback.html" class="nav-link"><i class="fas fa-comment"></i> Feedback</a></li>
             </ul>
-            
+
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -34,158 +34,83 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="main-container">
-        <header class="page-header">
-            <h1>Linear Algebra Vector Checker</h1>
-            <p class="subtitle">Analyze linear dependency &amp; independence of vectors in n-dimensional space</p>
-        </header>
+    <main class="main-container landing-page">
+        <section class="landing-hero card">
+            <div class="hero-badge"><i class="fas fa-sparkles"></i> Professional Interactive Learning Experience</div>
+            <h1>Master Linear Algebra with an Interactive Vector Simulation Lab</h1>
+            <p class="hero-subtitle">Analyze vector sets in 2D to 10D, validate linear dependence instantly, and learn with clean mathematical output plus dynamic graphical visualization.</p>
+            <div class="hero-actions">
+                <a href="simulation.html" class="btn btn-primary"><i class="fas fa-play"></i> Launch Simulation</a>
+                <a href="how-to-use.html" class="btn btn-secondary"><i class="fas fa-compass"></i> Learn How It Works</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-box"><strong>2D-10D</strong><span>Dimension Support</span></div>
+                <div class="stat-box"><strong>3 Methods</strong><span>Rank, RREF, Determinant</span></div>
+                <div class="stat-box"><strong>Live Graph</strong><span>2D & 3D Visualization</span></div>
+                <div class="stat-box"><strong>Export Ready</strong><span>Results + Graph Output</span></div>
+            </div>
+        </section>
 
-        <div class="dashboard">
-            <div class="control-panel card">
-                <h2><i class="fas fa-sliders-h"></i> Control Panel</h2>
-                
-                <div class="dimension-selector">
-                    <h3>Select Dimension</h3>
-                    <div class="dimension-control">
-                        <div class="dimension-input-group">
-                            <label for="dimensionInput">Enter Dimension (n):</label>
-                            <div class="dimension-input-container">
-                                <input type="number" id="dimensionInput" min="2" max="10" value="3" class="dimension-input">
-                                <span class="dimension-label">D</span>
-                            </div>
-                            <p class="dimension-note">2D/3D: Graphical + Mathematical | 4D+: Mathematical only</p>
-                        </div>
-                        <div class="quick-dimensions">
-                            <span>Quick:</span>
-                            <button class="quick-dim-btn" data-dim="2">2D</button>
-                            <button class="quick-dim-btn" data-dim="3">3D</button>
-                            <button class="quick-dim-btn" data-dim="4">4D</button>
-                            <button class="quick-dim-btn" data-dim="5">5D</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="vector-input-section">
-                    <div class="section-header">
-                        <h3>Input Vectors</h3>
-                        <div class="vector-count">
-                            <span>Vectors: <span id="vectorCount">3</span></span>
-                        </div>
-                    </div>
-                    <div class="vector-input-container" id="vectorInputs">
-                        <!-- Vector inputs will be generated here -->
-                    </div>
-                    <div class="vector-controls">
-                        <button id="addVectorBtn" class="btn btn-secondary">
-                            <i class="fas fa-plus"></i> Add Vector
-                        </button>
-                        <button id="removeVectorBtn" class="btn btn-secondary" disabled>
-                            <i class="fas fa-minus"></i> Remove Vector
-                        </button>
-                        <button id="clearVectorsBtn" class="btn btn-secondary">
-                            <i class="fas fa-trash"></i> Clear All
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="action-buttons">
-                    <button id="analyzeBtn" class="btn btn-primary">
-                        <i class="fas fa-calculator"></i> Analyze Vectors
-                    </button>
-                    <button id="randomBtn" class="btn btn-secondary">
-                        <i class="fas fa-random"></i> Generate Random
-                    </button>
-                </div>
-                
-                <div class="examples-section">
-                    <h3>Quick Examples</h3>
-                    <div class="example-buttons">
-                        <button class="example-btn btn-small" data-example="2D-dependent">2D Dependent</button>
-                        <button class="example-btn btn-small" data-example="2D-independent">2D Independent</button>
-                        <button class="example-btn btn-small" data-example="3D-dependent">3D Dependent</button>
-                        <button class="example-btn btn-small" data-example="3D-independent">3D Independent</button>
-                        <button class="example-btn btn-small" data-example="4D-dependent">4D Dependent</button>
-                        <button class="example-btn btn-small" data-example="4D-independent">4D Independent</button>
-                    </div>
-                </div>
+        <section class="landing-section">
+            <div class="section-title-wrap">
+                <h2>Why this Virtual Lab stands out</h2>
+                <p>Built for students, educators, and self-learners who want speed, clarity, and depth in one interface.</p>
             </div>
-            
-            <div class="results-section">
-                <div class="mathematical-results card">
-                    <h2><i class="fas fa-calculator"></i> Mathematical Analysis</h2>
-                    <div class="results-placeholder" id="mathResults">
-                        <div class="placeholder-content">
-                            <i class="fas fa-calculator"></i>
-                            <p style="color:#4d4b49;">Enter vectors and click "Analyze Vectors" to see mathematical results</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="graphical-results card" id="graphicalResults">
-                    <h2><i class="fas fa-chart-line"></i> Graphical Representation</h2>
-                    <div class="graph-container">
-                        <div class="graph-placeholder" id="graphPlaceholder">
-                            <div class="placeholder-content">
-                                <i class="fas fa-chart-line"></i>
-                                <p>Visualization will appear here after analysis (2D/3D only)</p>
-                            </div>
-                        </div>
-                        <canvas id="graphCanvas" width="600" height="400"></canvas>
-                        <div class="graph-controls">
-                            <button id="rotateBtn" class="btn-icon" title="Rotate 3D View">
-                                <i class="fas fa-sync-alt"></i>
-                            </button>
-                            <button id="exportGraphBtn" class="btn-icon" title="Export Graph">
-                                <i class="fas fa-download"></i>
-                            </button>
-                            <button id="toggleLabelsBtn" class="btn-icon active" title="Toggle Labels">
-                                <i class="fas fa-tag"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="high-dim-note" id="highDimNote">
-                        <i class="fas fa-info-circle"></i>
-                        <p>Graphical representation is available only for 2D and 3D vectors. For higher dimensions, only mathematical analysis is shown.</p>
-                    </div>
-                </div>
+            <div class="feature-grid">
+                <article class="feature-card card">
+                    <i class="fas fa-square-root-variable"></i>
+                    <h3>Mathematical Precision</h3>
+                    <p>Get rank, basis vectors, determinant checks, and RREF with clear interpretation for dependence decisions.</p>
+                </article>
+                <article class="feature-card card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Visual Intuition</h3>
+                    <p>Understand geometric behavior of vectors in 2D and 3D with interactive graph controls and labels.</p>
+                </article>
+                <article class="feature-card card">
+                    <i class="fas fa-gauge-high"></i>
+                    <h3>Fast Workflow</h3>
+                    <p>Quick dimension presets, example cases, random generation, and one-click analysis for rapid learning.</p>
+                </article>
             </div>
-        </div>
-        
-        <div class="export-section card">
-            <h2><i class="fas fa-file-export"></i> Export Results</h2>
-            <div class="export-controls">
-                <button id="exportResultsBtn" class="btn btn-secondary">
-                    <i class="fas fa-file-text"></i> Export Analysis
-                </button>
-                <button id="exportGraphImageBtn" class="btn btn-secondary">
-                    <i class="fas fa-image"></i> Export Graph
-                </button>
-                <button id="copyResultsBtn" class="btn btn-secondary">
-                    <i class="fas fa-copy"></i> Copy to Clipboard
-                </button>
+        </section>
+
+        <section class="landing-section">
+            <div class="section-title-wrap">
+                <h2>How it works</h2>
             </div>
-        </div>
+            <div class="steps-grid">
+                <div class="step-card card"><span>1</span><h3>Choose Dimension</h3><p>Select any space from ℝ² to ℝ¹⁰.</p></div>
+                <div class="step-card card"><span>2</span><h3>Input Vectors</h3><p>Add vectors manually or use guided examples.</p></div>
+                <div class="step-card card"><span>3</span><h3>Run Simulation</h3><p>Analyze to compute dependency and basis information.</p></div>
+                <div class="step-card card"><span>4</span><h3>Interpret & Export</h3><p>Review results and export analysis or graph output.</p></div>
+            </div>
+        </section>
+
+        <section class="landing-cta card">
+            <h2>Ready to run the simulation?</h2>
+            <p>Open the dedicated simulation workspace and start analyzing vectors instantly.</p>
+            <a href="simulation.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Open Simulation Workspace</a>
+        </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
                 <h4>Virtual Lab</h4>
-                <p>Virtual Lab – Interactive Linear Algebra Vector Checker. Analyze and visualize vectors, test linear dependence/independence in 2D, 3D, and higher dimensions, and strengthen your understanding of vector concepts with intuitive tools and instant results.</p>
+                <p>Interactive Linear Algebra Vector Checker with simulation-first learning.</p>
             </div>
-            
+
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul class="footer-links">
                     <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                    <li><a href="theory.html"><i class="fas fa-chevron-right"></i> Theory</a></li>
-                    <li><a href="how-to-use.html"><i class="fas fa-chevron-right"></i>Simulink</a></li>
+                    <li><a href="simulation.html"><i class="fas fa-chevron-right"></i> Simulation</a></li>
+                    <li><a href="how-to-use.html"><i class="fas fa-chevron-right"></i> How To Use</a></li>
                     <li><a href="feedback.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
                 </ul>
             </div>
-            
+
             <div class="footer-section">
                 <h4>Contact Info</h4>
                 <p><i class="fas fa-envelope"></i> Krushnasurase060@gmail.com</p>
@@ -196,13 +121,32 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="footer-bottom">
             <p>&copy; 2026 Virtual Lab. All rights reserved.</p>
-            <p>Linear Algebra Vector Checker &mdash; Virtual Lab</p>
+            <p>Linear Algebra Vector Checker — Professional Learning Experience</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
