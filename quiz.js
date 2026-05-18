@@ -30,12 +30,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const optionsText = optionsPara.textContent.replace('Options:', '').trim();
-        const options = optionsText.match(/[A-D]\)\s.*?(?=(?:\s[A-D]\)\s)|$)/g);
+        const markerRegex = /([A-Z])\)\s/g;
+        const markers = [...optionsText.matchAll(markerRegex)];
         const correctOption = answerPara.textContent.replace('Correct Option:', '').trim().charAt(0).toUpperCase();
 
-        if (!options || options.length === 0 || !correctOption) {
+        if (markers.length === 0 || !correctOption) {
             return;
         }
+
+        const options = markers.map((marker, markerIndex) => {
+            const start = marker.index;
+            const end = markerIndex + 1 < markers.length ? markers[markerIndex + 1].index : optionsText.length;
+            return optionsText.slice(start, end).trim();
+        });
 
         const questionTitle = questionEl.cloneNode(true);
         const optionsWrapper = document.createElement('div');
@@ -43,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         options.forEach(option => {
             const optionLetter = option.charAt(0);
-            const optionText = option.replace(/^[A-D]\)\s*/, '').trim();
+            const optionText = option.replace(/^[A-Z]\)\s*/, '').trim();
             const label = document.createElement('label');
             label.className = 'quiz-option';
 
@@ -102,11 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
             solutionContainer.style.display = 'block';
         });
 
-        block.innerHTML = '';
-        block.appendChild(questionTitle);
-        block.appendChild(optionsWrapper);
-        block.appendChild(checkButton);
-        block.appendChild(feedback);
-        block.appendChild(solutionContainer);
+        block.replaceChildren(questionTitle, optionsWrapper, checkButton, feedback, solutionContainer);
     });
 });

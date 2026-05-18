@@ -1872,8 +1872,6 @@ textarea.form-control {
     .definition-box, .example-box, .note-box {
         padding: var(--spacing-md);
     }
-
-
     .quiz-option {
         padding: var(--spacing-sm);
     }
