@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title> simulation | Virtual Lab</title>
+    <title>How To Use | Virtual Lab</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -43,199 +43,37 @@
             <p class="subtitle">Step-by-step guide to analyzing vectors in 2D, 3D, and higher dimensions</p>
         </header>
 
-        <div class="page-content">
+        <div class="page-content clean-document">
             <div class="content-section">
-                <h2>Getting Started with n-Dimensional Vectors</h2>
-                <p>The Linear Algebra Vector Checker now supports analysis of vectors in any dimension from 2D to 10D. Graphical visualization is available only for 2D and 3D vectors, while mathematical analysis works for all dimensions.</p>
-                
-                <div class="note-box">
-                    <h4>Key Features</h4>
-                    <ul>
-                        <li><strong>2D & 3D:</strong> Full mathematical analysis + graphical visualization</li>
-                        <li><strong>4D to 10D:</strong> Mathematical analysis only (no graphical representation)</li>
-                        <li><strong>Pure JavaScript:</strong> No external libraries or dependencies</li>
-                        <li><strong>Educational Focus:</strong> Detailed explanations and step-by-step results</li>
-                    </ul>
-                </div>
+                <h2>Overview</h2>
+                <p>This page explains how to use the simulator in a simple sequence. The tool supports dimensions from <strong>2 to 10</strong>. Graphs are shown for 2D and 3D, while higher dimensions use mathematical output only.</p>
             </div>
 
             <div class="content-section">
-                <h2>Step-by-Step Guide</h2>
-                
-                <h3>Step 1: Select Dimension</h3>
-                <div class="example-box">
-                    <h4>Choosing Your Vector Space</h4>
-                    <ol>
-                        <li><strong>Enter Dimension:</strong> Type a number (2-10) in the "Enter Dimension (n)" field</li>
-                        <li><strong>Quick Buttons:</strong> Use the quick buttons for 2D, 3D, 4D, or 5D</li>
-                        <li><strong>Dimension Note:</strong> Remember: 2D/3D show graphs, 4D+ are mathematical only</li>
-                    </ol>
-                    <p>The interface will automatically adjust to show the correct number of input fields for each vector.</p>
-                </div>
-                
-                <h3>Step 2: Input Your Vectors</h3>
-                <div class="example-box">
-                    <h4>Working with n-Dimensional Vectors</h4>
-                    <ul>
-                        <li><strong>Default Setup:</strong> The tool starts with 3 zero vectors</li>
-                        <li><strong>Add Vector:</strong> Click "Add Vector" to add more vectors (max 10)</li>
-                        <li><strong>Remove Vector:</strong> Click "Remove Vector" to delete the last vector</li>
-                        <li><strong>Input Components:</strong> Enter numerical values for each vector component</li>
-                        <li><strong>Component Labels:</strong> 2D/3D use x,y,z; higher dimensions use c1,c2,...</li>
-                        <li><strong>Clear All:</strong> Reset all vectors to zero with "Clear All"</li>
-                    </ul>
-                </div>
-                
-                <h3>Step 3: Analyze Vectors</h3>
-                <div class="example-box">
-                    <h4>Perform Linear Dependency Check</h4>
-                    <p>Click the <strong>"Analyze Vectors"</strong> button to:</p>
-                    <ol>
-                        <li><strong>Calculate Rank:</strong> Determine the maximum number of independent vectors</li>
-                        <li><strong>Check Determinant:</strong> For square matrices (when #vectors = dimension)</li>
-                        <li><strong>Compute RREF:</strong> Find the Reduced Row Echelon Form</li>
-                        <li><strong>Identify Basis:</strong> Extract basis vectors from the set</li>
-                        <li><strong>Generate Graph:</strong> For 2D/3D only, create visual representation</li>
-                    </ol>
-                </div>
-                
-                <h3>Step 4: Interpret Results</h3>
-                <div class="example-box">
-                    <h4>Understanding the Output</h4>
-                    <p>The results are displayed in the Mathematical Analysis section:</p>
-                    <ul>
-                        <li><strong>Dimension:</strong> Your selected dimension (ℝⁿ)</li>
-                        <li><strong>Rank:</strong> Number of linearly independent vectors found</li>
-                        <li><strong>Dependency Status:</strong> Independent or Dependent</li>
-                        <li><strong>Determinant:</strong> For square matrices (indicates volume scaling)</li>
-                        <li><strong>Basis Vectors:</strong> The independent vectors that form a basis</li>
-                        <li><strong>RREF:</strong> Reduced form showing pivot columns</li>
-                        <li><strong>Graphical View:</strong> For 2D/3D only, visual representation</li>
-                    </ul>
-                </div>
+                <h2>Step 1: Select Dimension</h2>
+                <p>Enter a value between 2 and 10 in the dimension field or use the quick dimension buttons. The interface updates automatically for the selected space.</p>
             </div>
 
             <div class="content-section">
-                <h2>Practical Examples by Dimension</h2>
-                
-                <h3>2D Examples</h3>
-                <div class="example-box">
-                    <h4>Example: Check if v₁ = (1,2), v₂ = (3,4), v₃ = (5,6) are linearly independent</h4>
-                    <ol>
-                        <li>Select 2D dimension</li>
-                        <li>Enter vectors: (1,2), (3,4), (5,6)</li>
-                        <li>Click "Analyze Vectors"</li>
-                        <li><strong>Result:</strong> Dependent (rank = 2, but 3 vectors in ℝ²)</li>
-                    </ol>
-                </div>
-                
-                <h3>3D Examples</h3>
-                <div class="example-box">
-                    <h4>Example: Standard Basis of ℝ³</h4>
-                    <ol>
-                        <li>Select 3D dimension</li>
-                        <li>Enter vectors: (1,0,0), (0,1,0), (0,0,1)</li>
-                        <li>Click "Analyze Vectors"</li>
-                        <li><strong>Result:</strong> Independent (rank = 3, determinant = 1)</li>
-                        <li><strong>Graph:</strong> Three perpendicular vectors from origin</li>
-                    </ol>
-                </div>
-                
-                <h3>4D+ Examples</h3>
-                <div class="example-box">
-                    <h4>Example: 4D Standard Basis</h4>
-                    <ol>
-                        <li>Select 4D dimension</li>
-                        <li>Enter vectors: (1,0,0,0), (0,1,0,0), (0,0,1,0), (0,0,0,1)</li>
-                        <li>Click "Analyze Vectors"</li>
-                        <li><strong>Result:</strong> Independent (rank = 4)</li>
-                        <li><strong>Note:</strong> No graphical representation for 4D</li>
-                    </ol>
-                </div>
+                <h2>Step 2: Enter Vectors</h2>
+                <p>Input each vector component in the table. You can add vectors, remove vectors, or clear all inputs. Use valid numeric values for accurate results.</p>
             </div>
 
             <div class="content-section">
-                <h2>Dimension-Specific Features</h2>
-                
-                <div class="definition-box">
-                    <h4>For 2D and 3D (With Graphical Visualization)</h4>
-                    <ul>
-                        <li><strong>Graph Controls:</strong> Rotate 3D view, toggle labels, export graph</li>
-                        <li><strong>Visual Interpretation:</strong> See geometric relationships</li>
-                        <li><strong>Arrow Representation:</strong> Vectors shown as arrows from origin</li>
-                        <li><strong>Coordinate System:</strong> Standard Cartesian axes</li>
-                    </ul>
-                </div>
-                
-                <div class="definition-box">
-                    <h4>For 4D to 10D (Mathematical Analysis Only)</h4>
-                    <ul>
-                        <li><strong>Mathematical Methods:</strong> Rank, RREF, determinant (if square)</li>
-                        <li><strong>Basis Identification:</strong> Find independent vectors that span the subspace</li>
-                        <li><strong>Dimension Info:</strong> Theoretical maximum rank = dimension</li>
-                        <li><strong>Export Results:</strong> Save analysis as text file</li>
-                    </ul>
-                </div>
+                <h2>Step 3: Run Analysis</h2>
+                <p>Click <strong>Analyze Vectors</strong> to compute rank, RREF, basis vectors, dependency status, and determinant when applicable.</p>
             </div>
 
             <div class="content-section">
-                <h2>Advanced Features</h2>
-                
-                <div class="note-box">
-                    <h4>Quick Examples</h4>
-                    <p>Use the pre-loaded examples to see the tool in action:</p>
-                    <ul>
-                        <li><strong>2D Dependent:</strong> Vectors that lie on the same line</li>
-                        <li><strong>2D Independent:</strong> Basis vectors of ℝ²</li>
-                        <li><strong>3D Dependent:</strong> Coplanar vectors</li>
-                        <li><strong>3D Independent:</strong> Standard basis of ℝ³</li>
-                        <li><strong>4D Examples:</strong> Both dependent and independent cases</li>
-                    </ul>
-                </div>
-                
-                <div class="note-box">
-                    <h4>Export Options</h4>
-                    <ul>
-                        <li><strong>Export Analysis:</strong> Save mathematical results as text file</li>
-                        <li><strong>Export Graph:</strong> For 2D/3D only, save visualization as PNG</li>
-                        <li><strong>Copy to Clipboard:</strong> Quick copy of summary results</li>
-                    </ul>
-                </div>
+                <h2>Step 4: Read Results</h2>
+                <p>Review the analysis summary to see whether the set is dependent or independent. Use rank and pivot interpretation to understand why the result is obtained.</p>
+                <p>For 2D and 3D inputs, also review the graph for geometric interpretation. For 4D to 10D, rely on the mathematical section.</p>
             </div>
 
             <div class="content-section">
-                <h2>Troubleshooting</h2>
-                
-                <div class="note-box">
-                    <h4>Common Issues and Solutions</h4>
-                    <p><strong>Problem:</strong> Can't add more vectors<br>
-                    <strong>Solution:</strong> Maximum is 10 vectors. Remove some first.</p>
-                    
-                    <p><strong>Problem:</strong> Graph not showing for 4D vectors<br>
-                    <strong>Solution:</strong> Graphical representation is only for 2D and 3D. Switch to 2D or 3D for visualization.</p>
-                    
-                    <p><strong>Problem:</strong> Determinant not showing<br>
-                    <strong>Solution:</strong> Determinant is only calculated when number of vectors equals dimension (square matrix).</p>
-                    
-                    <p><strong>Problem:</strong> Results seem incorrect<br>
-                    <strong>Solution:</strong> Check for input errors. Try the example vectors to verify tool functionality.</p>
-                </div>
-            </div>
-            
-            <div class="content-section">
-                <h2>Learning Strategies</h2>
-                
-                <div class="definition-box">
-                    <h4>Effective Use of This Tool</h4>
-                    <ol>
-                        <li><strong>Start Low:</strong> Begin with 2D and 3D to build intuition</li>
-                        <li><strong>Use Examples:</strong> Try all quick examples to see different cases</li>
-                        <li><strong>Predict First:</strong> Before analyzing, predict whether vectors should be dependent</li>
-                        <li><strong>Compare Dimensions:</strong> Analyze the same pattern in different dimensions</li>
-                        <li><strong>Check Theory:</strong> Verify mathematical results against theoretical expectations</li>
-                        <li><strong>Export and Study:</strong> Save results for later review and comparison</li>
-                    </ol>
-                </div>
+                <h2>Tips</h2>
+                <p>Start with small dimensions to build intuition. Compare your prediction with the computed output, then change vector sets and observe how rank and dependency change.</p>
+                <p>If results look unexpected, check input values and try known test cases such as basis vectors or scalar multiples.</p>
             </div>
         </div>
     </main>
