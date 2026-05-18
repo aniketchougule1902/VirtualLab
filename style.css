@@ -973,13 +973,13 @@ a:hover {
 .result-summary-banner.independent-banner {
     background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
     border: 2px solid #86efac;
-    color: #15803d;
+    color: var(--alert-success);
 }
 
 .result-summary-banner.dependent-banner {
     background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
     border: 2px solid #fca5a5;
-    color: #b91c1c;
+    color: var(--alert-error);
 }
 
 .result-summary-banner i {
@@ -1018,13 +1018,13 @@ a:hover {
 
 .badge-independent {
     background-color: #dcfce7;
-    color: #15803d;
+    color: var(--alert-success);
     border: 1px solid #86efac;
 }
 
 .badge-dependent {
     background-color: #fee2e2;
-    color: #b91c1c;
+    color: var(--alert-error);
     border: 1px solid #fca5a5;
 }
 
@@ -1316,15 +1316,15 @@ a:hover {
 }
 
 .quiz-feedback.correct {
-    color: #15803d;
+    color: var(--alert-success);
 }
 
 .quiz-feedback.incorrect {
-    color: #b91c1c;
+    color: var(--alert-error);
 }
 
 .quiz-feedback.warning {
-    color: #b45309;
+    color: var(--alert-warning);
 }
 
 .quiz-solution {
