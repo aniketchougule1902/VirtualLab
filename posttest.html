@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Posttest | Virtual Lab</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-project-diagram"></i>
+                <span class="logo-text">Virtual<span class="logo-highlight">Lab</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a href="simulation.html" class="nav-link"><i class="fas fa-flask"></i> Simulation</a></li>
+                <li class="nav-item"><a href="aim.html" class="nav-link"><i class="fas fa-bullseye"></i> Aim</a></li>
+                <li class="nav-item"><a href="theory.html" class="nav-link"><i class="fas fa-book"></i> Theory</a></li>
+                <li class="nav-item"><a href="how-to-use.html" class="nav-link"><i class="fas fa-circle-question"></i> How To Use</a></li>
+                <li class="nav-item"><a href="pretest.html" class="nav-link"><i class="fas fa-clipboard-check"></i> Pretest</a></li>
+                <li class="nav-item"><a href="posttest.html" class="nav-link active"><i class="fas fa-clipboard-list"></i> Posttest</a></li>
+                <li class="nav-item"><a href="references.html" class="nav-link"><i class="fas fa-link"></i> References</a></li>
+                <li class="nav-item"><a href="contributors.html" class="nav-link"><i class="fas fa-users"></i> Contributors</a></li>
+                <li class="nav-item"><a href="feedback.html" class="nav-link"><i class="fas fa-comment"></i> Feedback</a></li>
+            </ul>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <header class="page-header">
+            <h1>Posttest: FY BTech Engineering Mathematics</h1>
+            <p class="subtitle">15 advanced MCQs on linear algebra concepts with stepwise solutions</p>
+        </header>
+
+        <div class="page-content">
+            <div class="content-section">
+                <h2>Instructions</h2>
+                <div class="note-box">
+                    <ul>
+                        <li>Use this posttest after reading theory and using simulation.</li>
+                        <li>Each question has one correct option and a brief stepwise solution.</li>
+                        <li>Topics follow first-year engineering mathematics outcomes.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Posttest Questions (15)</h2>
+
+                <div class="example-box"><h4>Q1. For vectors in ℝ³, if rank = 3, then the set of exactly 3 vectors is:</h4><p><strong>Options:</strong> A) Dependent B) Independent C) Orthogonal only D) Not defined</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Rank = number of independent vectors.</li><li>Given 3 vectors and rank 3.</li><li>All 3 are independent.</li></ol></div>
+
+                <div class="example-box"><h4>Q2. If matrix columns are vectors in ℝ⁴ and one row in RREF is all zeros, then:</h4><p><strong>Options:</strong> A) Rank is 4 B) Rank is less than 4 C) Determinant is 1 D) Vectors must be orthogonal</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Zero row in RREF indicates not full row rank.</li><li>So rank &lt; number of rows (4).</li><li>Hence rank is less than 4.</li></ol></div>
+
+                <div class="example-box"><h4>Q3. Which is always true for a homogeneous system Ax = 0?</h4><p><strong>Options:</strong> A) No solution B) Exactly one non-zero solution C) Trivial solution always exists D) Infinite solutions always</p><p><strong>Correct Option:</strong> C</p><p><strong>Stepwise Solution:</strong></p><ol><li>Set x = 0 vector.</li><li>Then A(0)=0 always.</li><li>So trivial solution always exists.</li></ol></div>
+
+                <div class="example-box"><h4>Q4. For a 3×3 matrix, non-zero determinant implies:</h4><p><strong>Options:</strong> A) Rank 2 B) Rank 1 C) Rank 3 D) Rank 0</p><p><strong>Correct Option:</strong> C</p><p><strong>Stepwise Solution:</strong></p><ol><li>det(A) ≠ 0 means matrix is invertible.</li><li>Invertible square matrix has full rank.</li><li>Hence rank is 3.</li></ol></div>
+
+                <div class="example-box"><h4>Q5. In ℝⁿ, any set with more than n vectors is:</h4><p><strong>Options:</strong> A) Independent B) Dependent C) Basis D) Orthonormal</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Dimension is n.</li><li>At most n vectors can be independent.</li><li>So more than n vectors must be dependent.</li></ol></div>
+
+                <div class="example-box"><h4>Q6. If vectors v₁,v₂,v₃ satisfy v₃ = 2v₁ - v₂, then {v₁,v₂,v₃} is:</h4><p><strong>Options:</strong> A) Independent B) Dependent C) Orthogonal D) Basis of ℝ³ always</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>One vector is linear combination of others.</li><li>So non-trivial relation exists: 2v₁ - v₂ - v₃ = 0.</li><li>Hence set is dependent.</li></ol></div>
+
+                <div class="example-box"><h4>Q7. The rank of identity matrix I₅ is:</h4><p><strong>Options:</strong> A) 0 B) 1 C) 4 D) 5</p><p><strong>Correct Option:</strong> D</p><p><strong>Stepwise Solution:</strong></p><ol><li>I₅ has 5 pivot positions.</li><li>All rows and columns are independent.</li><li>Therefore rank(I₅)=5.</li></ol></div>
+
+                <div class="example-box"><h4>Q8. If 2 vectors in ℝ² are dependent, then geometrically they:</h4><p><strong>Options:</strong> A) Are perpendicular B) Lie on same line through origin C) Form a basis D) Have equal magnitude only</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Dependent means one is scalar multiple of other.</li><li>Scalar multiples share same direction line.</li><li>Thus they lie on same line through origin.</li></ol></div>
+
+                <div class="example-box"><h4>Q9. Which set can form a basis for ℝ²?</h4><p><strong>Options:</strong> A) (1,2),(2,4) B) (0,0),(1,0) C) (1,0),(0,1) D) (3,6),(1,2)</p><p><strong>Correct Option:</strong> C</p><p><strong>Stepwise Solution:</strong></p><ol><li>Basis in ℝ² needs 2 independent vectors.</li><li>Option C vectors are standard basis and independent.</li><li>Hence C forms a basis.</li></ol></div>
+
+                <div class="example-box"><h4>Q10. For matrix A (m×n), rank(A) equals:</h4><p><strong>Options:</strong> A) Number of zero rows always B) Number of pivots in RREF C) n always D) m always</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Reduce A to RREF.</li><li>Identify pivot positions.</li><li>Count pivots; this count is rank.</li></ol></div>
+
+                <div class="example-box"><h4>Q11. If A is 4×4 and rank(A)=3, then det(A) is:</h4><p><strong>Options:</strong> A) 1 B) -1 C) 0 D) Cannot be 0</p><p><strong>Correct Option:</strong> C</p><p><strong>Stepwise Solution:</strong></p><ol><li>For 4×4, full rank needed for non-zero determinant.</li><li>Given rank 3 &lt; 4, A is singular.</li><li>So determinant must be 0.</li></ol></div>
+
+                <div class="example-box"><h4>Q12. If vectors are mutually orthogonal and non-zero in ℝ³, then they are:</h4><p><strong>Options:</strong> A) Dependent B) Independent C) Equal D) Always 4 in number</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Non-zero orthogonal vectors cannot be scalar multiples.</li><li>Orthogonal set of non-zero vectors is independent.</li><li>Hence they are linearly independent.</li></ol></div>
+
+                <div class="example-box"><h4>Q13. In ℝ³, set {(1,0,0),(0,1,0),(1,1,0)} is:</h4><p><strong>Options:</strong> A) Independent B) Dependent C) Basis of ℝ³ D) Orthonormal</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Third vector = first + second.</li><li>Hence one vector depends on others.</li><li>So set is dependent.</li></ol></div>
+
+                <div class="example-box"><h4>Q14. Number of pivot columns in a matrix equals:</h4><p><strong>Options:</strong> A) Determinant B) Rank C) Trace D) Eigenvalue count</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Pivot columns represent independent columns.</li><li>Count of independent columns is rank.</li><li>Therefore pivot count equals rank.</li></ol></div>
+
+                <div class="example-box"><h4>Q15. If A is 2×2 with columns (a,b) and (c,d), independence requires:</h4><p><strong>Options:</strong> A) a+b+c+d=0 B) ad-bc ≠ 0 C) ad+bc=0 D) a=d only</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Compute determinant of [[a,c],[b,d]].</li><li>det = ad - bc.</li><li>Columns are independent iff ad - bc ≠ 0.</li></ol></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Virtual Lab</h4>
+                <p>Interactive Linear Algebra Vector Checker with simulation-first learning.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="simulation.html"><i class="fas fa-chevron-right"></i> Simulation</a></li>
+                    <li><a href="theory.html"><i class="fas fa-chevron-right"></i> Theory</a></li>
+                    <li><a href="feedback.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-envelope"></i> Krushnasurase060@gmail.com</p>
+                <p><i class="fas fa-globe"></i> <a href="https://aniketchougule1902.github.io/VirtualLab/" target="_blank" style="color:var(--neutral-gray-dark)">aniketchougule1902.github.io/VirtualLab</a></p>
+                <div class="social-links">
+                    <a href="https://github.com/aniketchougule1902/VirtualLab" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Virtual Lab. All rights reserved.</p>
+            <p>Linear Algebra Vector Checker — Educational Tool</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

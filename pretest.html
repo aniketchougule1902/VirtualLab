@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pretest | Virtual Lab</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-project-diagram"></i>
+                <span class="logo-text">Virtual<span class="logo-highlight">Lab</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a href="simulation.html" class="nav-link"><i class="fas fa-flask"></i> Simulation</a></li>
+                <li class="nav-item"><a href="aim.html" class="nav-link"><i class="fas fa-bullseye"></i> Aim</a></li>
+                <li class="nav-item"><a href="theory.html" class="nav-link"><i class="fas fa-book"></i> Theory</a></li>
+                <li class="nav-item"><a href="how-to-use.html" class="nav-link"><i class="fas fa-circle-question"></i> How To Use</a></li>
+                <li class="nav-item"><a href="pretest.html" class="nav-link active"><i class="fas fa-clipboard-check"></i> Pretest</a></li>
+                <li class="nav-item"><a href="posttest.html" class="nav-link"><i class="fas fa-clipboard-list"></i> Posttest</a></li>
+                <li class="nav-item"><a href="references.html" class="nav-link"><i class="fas fa-link"></i> References</a></li>
+                <li class="nav-item"><a href="contributors.html" class="nav-link"><i class="fas fa-users"></i> Contributors</a></li>
+                <li class="nav-item"><a href="feedback.html" class="nav-link"><i class="fas fa-comment"></i> Feedback</a></li>
+            </ul>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <header class="page-header">
+            <h1>Pretest: FY BTech Engineering Mathematics</h1>
+            <p class="subtitle">15 MCQs on vectors, matrices, determinants, and basic linear algebra with stepwise solutions</p>
+        </header>
+
+        <div class="page-content">
+            <div class="content-section">
+                <h2>Instructions</h2>
+                <div class="note-box">
+                    <ul>
+                        <li>Attempt each MCQ first, then verify using the stepwise solution.</li>
+                        <li>These questions are aligned with First Year BTech Engineering Mathematics scope.</li>
+                        <li>Focus on concepts used in this Virtual Lab: vectors, rank, determinant, and linear dependence.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Pretest Questions (15)</h2>
+
+                <div class="example-box"><h4>Q1. Which condition confirms that two vectors in ℝ² are linearly independent?</h4><p><strong>Options:</strong> A) One is zero vector B) One is scalar multiple of other C) Determinant of 2×2 matrix formed by vectors is non-zero D) Their magnitudes are equal</p><p><strong>Correct Option:</strong> C</p><p><strong>Stepwise Solution:</strong></p><ol><li>Place vectors as columns in a 2×2 matrix.</li><li>Compute determinant.</li><li>If determinant ≠ 0, columns are independent.</li></ol></div>
+
+                <div class="example-box"><h4>Q2. The vectors (1,2,3) and (2,4,6) in ℝ³ are:</h4><p><strong>Options:</strong> A) Independent B) Orthogonal C) Dependent D) Unit vectors</p><p><strong>Correct Option:</strong> C</p><p><strong>Stepwise Solution:</strong></p><ol><li>Check scalar multiple: (2,4,6)=2(1,2,3).</li><li>So one vector is multiple of the other.</li><li>Hence vectors are linearly dependent.</li></ol></div>
+
+                <div class="example-box"><h4>Q3. Maximum number of linearly independent vectors in ℝ⁴ is:</h4><p><strong>Options:</strong> A) 2 B) 3 C) 4 D) 5</p><p><strong>Correct Option:</strong> C</p><p><strong>Stepwise Solution:</strong></p><ol><li>Dimension theorem: max independent vectors = dimension.</li><li>Dimension of ℝ⁴ is 4.</li><li>So maximum independent vectors = 4.</li></ol></div>
+
+                <div class="example-box"><h4>Q4. If rank of matrix formed by 3 vectors in ℝ³ is 2, the vectors are:</h4><p><strong>Options:</strong> A) Independent B) Dependent C) Orthogonal D) Equal</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Number of vectors = 3.</li><li>Rank gives number of independent vectors = 2.</li><li>Since rank &lt; number of vectors, set is dependent.</li></ol></div>
+
+                <div class="example-box"><h4>Q5. Determinant test is directly applicable when:</h4><p><strong>Options:</strong> A) Matrix is rectangular B) Number of vectors &lt; dimension C) Matrix is square D) Entries are all integers</p><p><strong>Correct Option:</strong> C</p><p><strong>Stepwise Solution:</strong></p><ol><li>Determinant is defined only for square matrices.</li><li>Square means rows = columns.</li><li>Hence determinant test needs square matrix.</li></ol></div>
+
+                <div class="example-box"><h4>Q6. If det(A)=0 for a 3×3 matrix A made of three vectors in ℝ³, then vectors are:</h4><p><strong>Options:</strong> A) Independent B) Dependent C) Unit D) Parallel only</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>For square matrix, det(A)=0 implies singular matrix.</li><li>Singular matrix has rank &lt; 3.</li><li>So column/row vectors are linearly dependent.</li></ol></div>
+
+                <div class="example-box"><h4>Q7. In ℝ², any set of 3 vectors is always:</h4><p><strong>Options:</strong> A) Independent B) Dependent C) Orthogonal D) Basis</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Dimension of ℝ² is 2.</li><li>Any set with more than 2 vectors cannot all be independent.</li><li>Therefore any 3 vectors in ℝ² are dependent.</li></ol></div>
+
+                <div class="example-box"><h4>Q8. RREF of a matrix helps identify:</h4><p><strong>Options:</strong> A) Only determinant B) Only inverse C) Pivot positions and rank D) Only eigenvalues</p><p><strong>Correct Option:</strong> C</p><p><strong>Stepwise Solution:</strong></p><ol><li>Convert matrix to RREF.</li><li>Count pivot columns.</li><li>Pivot count equals rank and indicates independence structure.</li></ol></div>
+
+                <div class="example-box"><h4>Q9. Which set in ℝ³ is linearly independent?</h4><p><strong>Options:</strong> A) (1,0,0),(2,0,0),(0,1,0) B) (1,0,0),(0,1,0),(0,0,1) C) (1,1,1),(2,2,2),(3,3,3) D) (1,2,3),(2,4,6),(3,6,9)</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Option B is standard basis vectors.</li><li>No vector in B is combination of the other two.</li><li>Hence option B is independent.</li></ol></div>
+
+                <div class="example-box"><h4>Q10. If a set contains zero vector, the set is:</h4><p><strong>Options:</strong> A) Always independent B) Always dependent C) Independent in odd dimensions D) Depends on determinant only</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Take coefficient 1 for zero vector and 0 for others.</li><li>This gives non-trivial combination equal to zero vector.</li><li>So set is linearly dependent.</li></ol></div>
+
+                <div class="example-box"><h4>Q11. For vectors as columns of A, if rank(A)=k (number of columns), then columns are:</h4><p><strong>Options:</strong> A) Dependent B) Independent C) Equal D) Orthogonal</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Rank equals number of independent columns.</li><li>If rank equals total columns k, all are independent.</li><li>Hence column vectors are linearly independent.</li></ol></div>
+
+                <div class="example-box"><h4>Q12. Which statement is true for vectors in ℝ⁵?</h4><p><strong>Options:</strong> A) Any 5 vectors are always dependent B) Any 6 vectors are always dependent C) Any 4 vectors are always independent D) Rank can exceed 5</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Maximum independent vectors in ℝ⁵ is 5.</li><li>So any set with more than 5 vectors is dependent.</li><li>Therefore any 6 vectors are always dependent.</li></ol></div>
+
+                <div class="example-box"><h4>Q13. The vectors (1,2) and (-2,1) are:</h4><p><strong>Options:</strong> A) Dependent B) Independent C) Equal D) Zero vectors</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Form matrix [[1,-2],[2,1]].</li><li>Determinant = 1×1 - (-2×2) = 5 ≠ 0.</li><li>Hence vectors are linearly independent.</li></ol></div>
+
+                <div class="example-box"><h4>Q14. If two vectors in ℝ³ are collinear, they are:</h4><p><strong>Options:</strong> A) Independent B) Dependent C) Orthogonal D) Basis of ℝ³</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Collinear means one vector is scalar multiple of other.</li><li>Scalar-multiple relation gives dependency.</li><li>So vectors are linearly dependent.</li></ol></div>
+
+                <div class="example-box"><h4>Q15. A basis of ℝ³ must contain:</h4><p><strong>Options:</strong> A) Exactly 2 vectors B) At most 2 vectors C) Exactly 3 independent vectors D) Any 3 vectors</p><p><strong>Correct Option:</strong> C</p><p><strong>Stepwise Solution:</strong></p><ol><li>Basis must be linearly independent and span the space.</li><li>Dimension of ℝ³ is 3.</li><li>Hence basis needs exactly 3 independent vectors.</li></ol></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Virtual Lab</h4>
+                <p>Interactive Linear Algebra Vector Checker with simulation-first learning.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="simulation.html"><i class="fas fa-chevron-right"></i> Simulation</a></li>
+                    <li><a href="theory.html"><i class="fas fa-chevron-right"></i> Theory</a></li>
+                    <li><a href="feedback.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-envelope"></i> Krushnasurase060@gmail.com</p>
+                <p><i class="fas fa-globe"></i> <a href="https://aniketchougule1902.github.io/VirtualLab/" target="_blank" style="color:var(--neutral-gray-dark)">aniketchougule1902.github.io/VirtualLab</a></p>
+                <div class="social-links">
+                    <a href="https://github.com/aniketchougule1902/VirtualLab" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Virtual Lab. All rights reserved.</p>
+            <p>Linear Algebra Vector Checker — Educational Tool</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
