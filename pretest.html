@@ -53,7 +53,7 @@
                 </div>
             </div>
 
-            <div class="content-section">
+            <div class="content-section quiz-section">
                 <h2>Pretest Questions (15)</h2>
 
                 <div class="example-box"><h4>Q1. Which condition confirms that two vectors in ℝ² are linearly independent?</h4><p><strong>Options:</strong> A) One is zero vector B) One is scalar multiple of other C) Determinant of 2×2 matrix formed by vectors is non-zero D) Their magnitudes are equal</p><p><strong>Correct Option:</strong> C</p><p><strong>Stepwise Solution:</strong></p><ol><li>Place vectors as columns in a 2×2 matrix.</li><li>Compute determinant.</li><li>If determinant ≠ 0, columns are independent.</li></ol></div>
@@ -123,25 +123,6 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-
-            if (hamburger && navMenu) {
-                hamburger.addEventListener('click', function() {
-                    hamburger.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                });
-
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    link.addEventListener('click', () => {
-                        hamburger.classList.remove('active');
-                        navMenu.classList.remove('active');
-                    });
-                });
-            }
-        });
-    </script>
+            <script src="quiz.js"></script>
 </body>
 </html>

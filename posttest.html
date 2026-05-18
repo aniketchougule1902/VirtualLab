@@ -53,7 +53,7 @@
                 </div>
             </div>
 
-            <div class="content-section">
+            <div class="content-section quiz-section">
                 <h2>Posttest Questions (15)</h2>
 
                 <div class="example-box"><h4>Q1. For vectors in ℝ³, if rank = 3, then the set of exactly 3 vectors is:</h4><p><strong>Options:</strong> A) Dependent B) Independent C) Orthogonal only D) Not defined</p><p><strong>Correct Option:</strong> B</p><p><strong>Stepwise Solution:</strong></p><ol><li>Rank = number of independent vectors.</li><li>Given 3 vectors and rank 3.</li><li>All 3 are independent.</li></ol></div>
@@ -123,25 +123,6 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.querySelector('.hamburger');
-            const navMenu = document.querySelector('.nav-menu');
-
-            if (hamburger && navMenu) {
-                hamburger.addEventListener('click', function() {
-                    hamburger.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                });
-
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    link.addEventListener('click', () => {
-                        hamburger.classList.remove('active');
-                        navMenu.classList.remove('active');
-                    });
-                });
-            }
-        });
-    </script>
+            <script src="quiz.js"></script>
 </body>
 </html>
