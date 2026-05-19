@@ -340,6 +340,9 @@ function renderActiveStep(step, index) {
                 <button class="btn-check-answer" onclick="checkStepAnswer(${index})">
                     <i class="fas fa-check"></i> Check Answer
                 </button>
+                <button class="btn-skip-step" onclick="skipStep(${index})">
+                    <i class="fas fa-forward"></i> Skip
+                </button>
                 <button class="btn-show-hint" id="hint-btn-${index}" onclick="showStepHint(${index})">
                     <i class="fas fa-lightbulb"></i> Show Hint
                 </button>
@@ -598,6 +601,26 @@ function validateRadioAnswer(stepIndex, step) {
 function showStepHint(stepIndex) {
     const hintBox = document.getElementById(`hint-box-${stepIndex}`);
     if (hintBox) hintBox.classList.add('visible');
+}
+
+// ===== Skip Step =====
+function skipStep(stepIndex) {
+    const step = simState.steps[stepIndex];
+    simState.attemptsPerStep[stepIndex] = { correct: true, attempts: 0, marksAwarded: 0, skipped: true };
+
+    showAlert('info', 'Step Skipped', `${step.title} skipped. 0 marks awarded.`);
+
+    setTimeout(() => {
+        if (simState.currentStep < simState.totalSteps - 1) {
+            simState.currentStep++;
+            renderWizard();
+        } else {
+            simState.completed = true;
+            renderWizard();
+            if (currentDimension <= 3) drawGraph();
+            showAlert('success', 'Practice Complete! 🎉', `Final score: ${simState.score} / ${simState.maxScore}`);
+        }
+    }, 400);
 }
 
 // ===== Show Full Solution =====

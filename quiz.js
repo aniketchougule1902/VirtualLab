@@ -176,3 +176,103 @@ document.addEventListener('DOMContentLoaded', function() {
         summaryBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
 });
+
+// ===== Auto-render bracket matrices into visual HTML matrices =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Matches patterns like [[1, 2], [3, 4]] or [[1, 2, | 5], [2, 3, | 8]]
+    const matrixRegex = /\[\[([^\]]*?)\](?:,\s*\[([^\]]*?)\])*\]/g;
+
+    function parseMatrix(text) {
+        // Remove outer brackets
+        let inner = text.slice(1, -1);
+        const rows = [];
+        let depth = 0, start = 0;
+        for (let i = 0; i < inner.length; i++) {
+            if (inner[i] === '[') {
+                if (depth === 0) start = i + 1;
+                depth++;
+            } else if (inner[i] === ']') {
+                depth--;
+                if (depth === 0) {
+                    rows.push(inner.slice(start, i));
+                }
+            }
+        }
+        return rows;
+    }
+
+    function buildMatrixHTML(rows) {
+        let html = '<span class="matrix-render"><span class="matrix-render-body">';
+        rows.forEach(row => {
+            const hasAugSep = row.includes('|');
+            const cells = row.split(',').map(c => c.trim());
+            html += '<span class="matrix-render-row">';
+            cells.forEach(cell => {
+                if (cell.includes('|')) {
+                    const parts = cell.split('|').map(p => p.trim());
+                    if (parts[0]) html += `<span class="matrix-render-cell">${parts[0]}</span>`;
+                    html += '<span class="matrix-render-sep"></span>';
+                    if (parts[1]) html += `<span class="matrix-render-cell">${parts[1]}</span>`;
+                } else {
+                    html += `<span class="matrix-render-cell">${cell}</span>`;
+                }
+            });
+            html += '</span>';
+        });
+        html += '</span></span>';
+        return html;
+    }
+
+    function renderMatricesInElement(el) {
+        // Only process text nodes and simple inline elements
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+        textNodes.forEach(node => {
+            const text = node.textContent;
+            if (!text.includes('[[')) return;
+
+            // Find all matrix patterns
+            const fullRegex = /\[\[(?:[^\[\]]*?\[?[^\[\]]*?\]?)*\]\]/g;
+            let match;
+            const parts = [];
+            let lastIndex = 0;
+
+            while ((match = fullRegex.exec(text)) !== null) {
+                if (match.index > lastIndex) {
+                    parts.push({ type: 'text', value: text.slice(lastIndex, match.index) });
+                }
+                const rows = parseMatrix(match[0]);
+                if (rows.length > 0) {
+                    parts.push({ type: 'matrix', value: buildMatrixHTML(rows) });
+                } else {
+                    parts.push({ type: 'text', value: match[0] });
+                }
+                lastIndex = match.index + match[0].length;
+            }
+
+            if (parts.length === 0) return;
+            if (lastIndex < text.length) {
+                parts.push({ type: 'text', value: text.slice(lastIndex) });
+            }
+
+            const span = document.createElement('span');
+            parts.forEach(part => {
+                if (part.type === 'text') {
+                    span.appendChild(document.createTextNode(part.value));
+                } else {
+                    const temp = document.createElement('span');
+                    temp.innerHTML = part.value;
+                    while (temp.firstChild) span.appendChild(temp.firstChild);
+                }
+            });
+            node.parentNode.replaceChild(span, node);
+        });
+    }
+
+    // Render matrices in quiz boxes, theory sections, etc.
+    document.querySelectorAll('.example-box, .definition-box, .note-box, .content-section, .formula').forEach(el => {
+        renderMatricesInElement(el);
+    });
+});
