@@ -169,7 +169,7 @@
                     <div class="info-card">
                         <i class="fas fa-envelope"></i>
                         <h3>Email</h3>
-                        <p><strong>Project Lead (Aniket):</strong><br>
+                        <p><strong>Project Lead (Aniket): </strong><br>
                         <a href="mailto:aniketvipulchougule@gmail.com">aniketvipulchougule@gmail.com</a></p>
                         <p><strong>GitHub Profile:</strong><br>
                         <a href="https://github.com/aniketchougule1902" target="_blank">github.com/aniketchougule1902</a></p>
@@ -292,7 +292,7 @@
                     const mailBody = `Name: ${name}\nEmail: ${email}\nRole: ${role}\nSubject: ${subject}\nConsent Given: ${consent}\n\nMessage:\n${message}`;
                     const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
 
-                    formMessage.textContent = `Thank you, ${name || 'there'}. Opening your email app with your feedback draft now.`;
+                    formMessage.textContent = `Thank you, ${name || 'visitor'}. Opening your email app with your feedback draft now.`;
                     formMessage.style.display = 'block';
                     formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
