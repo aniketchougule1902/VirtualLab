@@ -274,6 +274,7 @@
             // Feedback form handling
             const feedbackForm = document.getElementById('feedbackForm');
             const formMessage = document.getElementById('formMessage');
+            const MESSAGE_DISPLAY_DURATION = 5000;
             
             if (feedbackForm && formMessage) {
                 feedbackForm.addEventListener('submit', function(e) {
@@ -292,16 +293,11 @@
                     const mailBody = `Name: ${name}\nEmail: ${email}\nRole: ${role}\nSubject: ${subject}\nConsent Given: ${consent}\n\nMessage:\n${message}`;
                     const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
 
-                    formMessage.textContent = `Thank you, ${name || 'visitor'}. Opening your email app with your feedback draft now.`;
+                    formMessage.textContent = `Thank you, ${name || 'visitor'}. Your email app should now be open with your feedback draft.`;
                     formMessage.style.display = 'block';
                     formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-                    const emailLink = document.createElement('a');
-                    emailLink.href = mailtoLink;
-                    emailLink.style.display = 'none';
-                    document.body.appendChild(emailLink);
-                    emailLink.click();
-                    document.body.removeChild(emailLink);
+                    window.location.href = mailtoLink;
 
                     setTimeout(() => {
                         feedbackForm.reset();
@@ -309,7 +305,7 @@
 
                     setTimeout(() => {
                         formMessage.style.display = 'none';
-                    }, 5000);
+                    }, MESSAGE_DISPLAY_DURATION);
                 });
             }
         });
