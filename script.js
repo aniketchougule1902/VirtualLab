@@ -479,53 +479,12 @@ function updateVectorCount() {
 
 // ===== Analysis Functions =====
 function analyzeVectors() {
-    // Close mobile menu if open
-    if (hamburger && hamburger.classList.contains('active')) {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.style.overflow = '';
+    // Delegate to the interactive step-by-step practice simulator
+    if (typeof startPractice === 'function') {
+        startPractice();
+    } else {
+        showAlert('error', 'Simulator Error', 'The practice simulator module failed to load.');
     }
-    
-    // Validate vectors
-    if (!validateVectors()) {
-        return;
-    }
-    
-    // Show loading state
-    showLoadingState();
-    
-    // Small delay to show loading and prevent UI freeze
-    setTimeout(() => {
-        try {
-            // Perform linear algebra calculations
-            const results = calculateLinearAlgebraResults();
-            
-            // Display mathematical results
-            displayMathematicalResults(results);
-            
-            // Draw graphical representation only for 2D and 3D
-            if (currentDimension <= 3) {
-                drawGraph();
-            }
-            
-            // Show success alert
-            const status = results.isLinearlyIndependent ? 'independent' : 'dependent';
-            showAlert('success', 'Analysis Complete', 
-                `${vectors.length} vectors in ${currentDimension}D are linearly ${status}. Rank: ${results.rank}/${vectors.length}`);
-            
-            // Scroll to results on mobile
-            if (isMobile) {
-                mathResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-        } catch (error) {
-            // Show error alert
-            showAlert('error', 'Analysis Failed', 'An error occurred during analysis. Please check your input vectors.');
-            console.error('Analysis error:', error);
-            
-            // Reset results display
-            clearResults();
-        }
-    }, 50);
 }
 
 function validateVectors() {
