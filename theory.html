@@ -20,7 +20,6 @@
                 <li class="nav-item"><a href="simulation.html" class="nav-link"><i class="fas fa-flask"></i> Simulation</a></li>
                 <li class="nav-item"><a href="aim.html" class="nav-link"><i class="fas fa-bullseye"></i> Aim</a></li>
                 <li class="nav-item"><a href="theory.html" class="nav-link active"><i class="fas fa-book"></i> Theory</a></li>
-                <li class="nav-item"><a href="how-to-use.html" class="nav-link"><i class="fas fa-circle-question"></i> How To Use</a></li>
                 <li class="nav-item"><a href="pretest.html" class="nav-link"><i class="fas fa-clipboard-check"></i> Pretest</a></li>
                 <li class="nav-item"><a href="posttest.html" class="nav-link"><i class="fas fa-clipboard-list"></i> Posttest</a></li>
                 <li class="nav-item"><a href="references.html" class="nav-link"><i class="fas fa-link"></i> References</a></li>
@@ -45,198 +44,79 @@
 
         <div class="page-content theory-layout">
             <section class="content-section theory-hero-card">
-                <h2>The Big Idea</h2>
-                <p>Linear algebra studies how vectors work together. In this lab, the main question is simple: <strong>can one vector be built from the others, or not?</strong></p>
-                <p>If a vector can be made from the others, the set is dependent. If every vector adds something new, the set is independent.</p>
-                <div class="theory-highlight">
-                    <i class="fas fa-lightbulb"></i>
-                    <p><strong>Quick memory tip:</strong> independent vectors bring new directions; dependent vectors repeat information.</p>
-                </div>
+                <h2>The Main Idea</h2>
+                <p>In this lab, we check one thing: can one vector be made using the other vectors?</p>
+                <p>If yes, the vectors are <strong>dependent</strong>. If no, the vectors are <strong>independent</strong>.</p>
             </section>
 
             <section class="content-section">
                 <h2>What Is a Vector?</h2>
-                <div class="theory-grid">
-                    <article class="theory-card">
-                        <h3>Meaning</h3>
-                        <p>A vector is an ordered list of numbers such as (2, 3) or (1, -1, 4). Each number is called a component.</p>
-                    </article>
-                    <article class="theory-card">
-                        <h3>Dimension</h3>
-                        <p>The number of components tells us the dimension. For example, (2, 3) is in ℝ² and (1, -1, 4) is in ℝ³.</p>
-                    </article>
-                    <article class="theory-card">
-                        <h3>Interpretation</h3>
-                        <p>In geometry, a vector can be seen as an arrow. In algebra, it is a list of values that can be scaled and added.</p>
-                    </article>
-                </div>
-            </section>
-
-            <section class="content-section">
-                <h2>Linear Combination and Span</h2>
                 <div class="definition-box theory-box">
-                    <h4><i class="fas fa-square-root-alt"></i> Linear Combination</h4>
-                    <p>A linear combination is made by multiplying vectors by numbers and then adding the results.</p>
-                    <p class="formula">a₁v₁ + a₂v₂ + ... + aₖvₖ</p>
+                    <h4><i class="fas fa-book-open"></i> What is a vector?</h4>
+                    <p>A vector is a list of numbers like (2, 3) or (1, -1, 4).</p>
+                    <p class="formula">v = (v₁, v₂, ..., vₙ)</p>
                 </div>
                 <div class="note-box theory-box">
-                    <h4><i class="fas fa-arrows-left-right-to-line"></i> Span</h4>
-                    <p>The span of a set of vectors is the collection of all vectors you can create from those linear combinations.</p>
-                    <ul class="theory-list">
-                        <li>One non-zero vector in ℝ² spans a line through the origin.</li>
-                        <li>Two independent vectors in ℝ² span the whole plane.</li>
-                        <li>Three independent vectors in ℝ³ span the whole 3D space.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="content-section">
-                <h2>Linear Dependence and Independence</h2>
-                <div class="theory-grid">
-                    <article class="theory-card">
-                        <h3>Dependent Set</h3>
-                        <p>A set is dependent when at least one vector can be written as a combination of the others.</p>
-                        <p>That means the set contains repeated direction or repeated information.</p>
-                    </article>
-                    <article class="theory-card">
-                        <h3>Independent Set</h3>
-                        <p>A set is independent when no vector in the set can be made from the others.</p>
-                        <p>Each vector is necessary and contributes a new direction.</p>
-                    </article>
-                </div>
-                <div class="example-box theory-box">
-                    <h4>Simple Example</h4>
-                    <p>The vectors (1, 2, 3) and (2, 4, 6) are dependent because the second vector is just 2 times the first.</p>
-                    <p>The vectors (1, 0, 0), (0, 1, 0), and (0, 0, 1) are independent because none of them can be formed from the other two.</p>
-                </div>
-            </section>
-
-            <section class="content-section">
-                <h2>Introduction to Vectors in ℝⁿ (Very Simple)</h2>
-                <div class="definition-box theory-box">
-                    <h4><i class="fas fa-book-open"></i> Definition: n-Dimensional Vector</h4>
-                    <p>A vector in ℝⁿ is just an ordered list of n real numbers.</p>
-                    <p class="formula">v = (v₁, v₂, ..., vₙ) ∈ ℝⁿ</p>
-                    <p>Each value vᵢ is called a component.</p>
-                </div>
-                <div class="note-box theory-box">
-                    <h4><i class="fas fa-arrows-to-dot"></i> Linear Combination in n-Dimensions</h4>
-                    <p>Multiply each vector by a number (scalar), then add.</p>
+                    <h4><i class="fas fa-arrows-to-dot"></i> Linear combination</h4>
+                    <p>Multiply vectors by numbers, then add them.</p>
                     <p class="formula">w = c₁v₁ + c₂v₂ + ... + cₖvₖ</p>
                 </div>
+            </section>
+
+            <section class="content-section">
+                <h2>How to Check Dependence</h2>
                 <div class="example-box theory-box">
-                    <h4><i class="fas fa-scale-balanced"></i> Dependency &amp; Independence (Main Condition)</h4>
+                    <h4><i class="fas fa-scale-balanced"></i> Basic rule</h4>
                     <p>Check this equation:</p>
                     <p class="formula">c₁v₁ + c₂v₂ + ... + cₖvₖ = 0</p>
                     <ul class="theory-list">
-                        <li><strong>Linearly dependent:</strong> if there is a solution where at least one c-value is non-zero.</li>
-                        <li><strong>Linearly independent:</strong> if the only solution is <strong>c₁ = c₂ = ... = cₖ = 0</strong>.</li>
+                        <li><strong>Dependent:</strong> the linear combination equals zero when at least one c-value is non-zero.</li>
+                        <li><strong>Independent:</strong> only c₁ = c₂ = ... = cₖ = 0 makes the linear combination equal zero.</li>
                     </ul>
                 </div>
                 <div class="theory-grid">
                     <article class="theory-card">
-                        <h3>ℝ² (2D)</h3>
+                        <h3>In ℝ²</h3>
                         <ul class="theory-list">
-                            <li>Dependent if vectors lie on the same line (collinear).</li>
+                            <li>Vectors on the same line are dependent.</li>
                             <li>Any 3 or more vectors are always dependent.</li>
                         </ul>
                     </article>
                     <article class="theory-card">
-                        <h3>ℝ³ (3D)</h3>
+                        <h3>In ℝ³</h3>
                         <ul class="theory-list">
-                            <li>Dependent if vectors lie in the same plane (coplanar).</li>
+                            <li>Vectors in one plane can be dependent.</li>
                             <li>Any 4 or more vectors are always dependent.</li>
                         </ul>
                     </article>
                     <article class="theory-card">
-                        <h3>ℝⁿ (nD)</h3>
+                        <h3>In ℝⁿ</h3>
                         <ul class="theory-list">
-                            <li>General rule: more than n vectors are always dependent.</li>
-                            <li>Maximum independent vectors in ℝⁿ is exactly n.</li>
+                            <li>More than n vectors are always dependent.</li>
+                            <li>Maximum independent vectors = n.</li>
                         </ul>
                     </article>
                 </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Methods Used in This Lab</h2>
                 <div class="theory-steps">
                     <article class="theory-step-card">
                         <span>1</span>
-                        <h3>Matrix Rank Method</h3>
-                        <p>Form a matrix using vectors as columns. If rank = number of vectors, independent; otherwise dependent.</p>
+                        <h3>Rank</h3>
+                        <p>If rank = number of vectors, they are independent. Otherwise dependent.</p>
                     </article>
                     <article class="theory-step-card">
                         <span>2</span>
-                        <h3>Determinant Method</h3>
-                        <p>This method works only for the square case (n vectors in ℝⁿ). If det(A) ≠ 0, the vectors are independent. If det(A) = 0, the vectors are dependent.</p>
+                        <h3>Determinant</h3>
+                        <p>For square matrix only: det ≠ 0 means independent, det = 0 means dependent.</p>
                     </article>
                     <article class="theory-step-card">
                         <span>3</span>
-                        <h3>RREF Method</h3>
-                        <p>Count pivots (leading 1s). Pivots = rank. If rank equals number of vectors, independent; else dependent.</p>
+                        <h3>RREF</h3>
+                        <p>Count pivots. Pivot count gives rank and helps decide dependence.</p>
                     </article>
-                </div>
-            </section>
-
-            <section class="content-section">
-                <h2>Rank, Determinant, and RREF</h2>
-                <div class="theory-steps">
-                    <article class="theory-step-card">
-                        <span>1</span>
-                        <h3>Rank Test</h3>
-                        <p>Rank tells us how many vectors in the set are actually independent. If rank equals the number of vectors, the set is independent.</p>
-                    </article>
-                    <article class="theory-step-card">
-                        <span>2</span>
-                        <h3>Determinant Test</h3>
-                        <p>This works only for square matrices. A non-zero determinant means the vectors are independent. A zero determinant means they are dependent.</p>
-                    </article>
-                    <article class="theory-step-card">
-                        <span>3</span>
-                        <h3>RREF Test</h3>
-                        <p>RREF shows pivot positions clearly. The number of pivots gives the rank, and pivot columns help identify basis vectors.</p>
-                    </article>
-                </div>
-            </section>
-
-            <section class="content-section">
-                <h2>Basis and Dimension</h2>
-                <div class="definition-box theory-box">
-                    <h4><i class="fas fa-layer-group"></i> Basis</h4>
-                    <p>A basis is a set of vectors that is both <strong>independent</strong> and able to <strong>span</strong> the space.</p>
-                    <p>So, a basis has exactly the right number of vectors: not too few and not too many.</p>
-                </div>
-                <div class="theory-highlight">
-                    <i class="fas fa-ruler-combined"></i>
-                    <p>In ℝⁿ, you can never have more than <strong>n independent vectors</strong>. So any set with more than n vectors is automatically dependent.</p>
-                </div>
-            </section>
-
-            <section class="content-section">
-                <h2>Geometric Understanding</h2>
-                <div class="theory-grid">
-                    <article class="theory-card">
-                        <h3>In 2D</h3>
-                        <p>Two independent vectors point in different directions and can cover the whole plane. If they lie on the same line, they are dependent.</p>
-                    </article>
-                    <article class="theory-card">
-                        <h3>In 3D</h3>
-                        <p>Three independent vectors can fill 3D space. If one lies in the plane formed by the other two, the set becomes dependent.</p>
-                    </article>
-                    <article class="theory-card">
-                        <h3>Above 3D</h3>
-                        <p>We cannot draw higher-dimensional spaces directly, but the same algebraic rules still work. That is why rank and RREF are very useful.</p>
-                    </article>
-                </div>
-            </section>
-
-            <section class="content-section">
-                <h2>How This Lab Helps</h2>
-                <div class="note-box theory-box">
-                    <h4><i class="fas fa-flask"></i> Learning Through Practice</h4>
-                    <ul class="theory-list">
-                        <li>Enter your own vectors and test your ideas quickly.</li>
-                        <li>Compare graphical understanding with algebraic results.</li>
-                        <li>Read rank, determinant, and RREF outputs together.</li>
-                        <li>Identify which vectors form a basis for the span.</li>
-                    </ul>
                 </div>
             </section>
         </div>
