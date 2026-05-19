@@ -130,8 +130,8 @@
                     <div class="team-member">
                         <i class="fas fa-envelope fa-3x" style="color: var(--secondary-teal); margin-bottom: 15px;"></i>
                         <h3>Email</h3>
-                        <p><strong>Project Lead (Krushna):</strong><br>
-                        <a href="mailto:Krushnasurase060@gmail.com">Krushnasurase060@gmail.com</a></p>
+                        <p><strong>Project Lead (Aniket):</strong><br>
+                        <a href="mailto:aniketvipulchougule@gmail.com">aniketvipulchougule@gmail.com</a></p>
                         <p><strong>Lead Developer (Aniket):</strong><br>
                         <a href="https://github.com/aniketchougule1902" target="_blank">github.com/aniketchougule1902</a></p>
                     </div>
@@ -262,7 +262,7 @@
             
             <div class="footer-section">
                 <h4>Contact Info</h4>
-                <p><i class="fas fa-envelope"></i> Krushnasurase060@gmail.com</p>
+                <p><i class="fas fa-envelope"></i> aniketvipulchougule@gmail.com</p>
                 <p><i class="fas fa-globe"></i> <a href="https://aniketchougule1902.github.io/VirtualLab/" target="_blank" style="color:var(--neutral-gray-dark)">aniketchougule1902.github.io/VirtualLab</a></p>
                 <div class="social-links">
                     <a href="https://github.com/aniketchougule1902/VirtualLab" class="social-link"><i class="fab fa-github"></i></a>
@@ -302,20 +302,28 @@
             
             feedbackForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                
-                // In a real application, you would send this data to a server
-                // For this demo, we'll just show a success message
-                
-                formMessage.textContent = "Thank you for your feedback! We'll get back to you soon.";
+
+                const recipientEmail = 'aniketvipulchougule@gmail.com';
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const role = document.getElementById('role').value || 'Not specified';
+                const subjectSelect = document.getElementById('subject');
+                const subject = subjectSelect.options[subjectSelect.selectedIndex].text;
+                const message = document.getElementById('message').value.trim();
+                const consent = feedbackForm.querySelector('input[name="consent"]').checked ? 'Yes' : 'No';
+
+                const mailSubject = `Virtual Lab Feedback: ${subject}`;
+                const mailBody = `Name: ${name}\nEmail: ${email}\nRole: ${role}\nSubject: ${subject}\nConsent Given: ${consent}\n\nMessage:\n${message}`;
+                const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+
+                formMessage.textContent = "Opening your email app to send feedback...";
                 formMessage.style.display = 'block';
                 formMessage.style.backgroundColor = '#d4edda';
                 formMessage.style.color = '#155724';
-                
-                // Reset form after 5 seconds
+
                 setTimeout(() => {
-                    feedbackForm.reset();
-                    formMessage.style.display = 'none';
-                }, 5000);
+                    window.location.href = mailtoLink;
+                }, 200);
             });
         });
     </script>
