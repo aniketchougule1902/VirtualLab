@@ -321,8 +321,12 @@
                 formMessage.style.backgroundColor = '#d4edda';
                 formMessage.style.color = '#155724';
 
-                feedbackForm.reset();
-                window.location.href = mailtoLink;
+                const emailLink = document.createElement('a');
+                emailLink.href = mailtoLink;
+                emailLink.style.display = 'none';
+                document.body.appendChild(emailLink);
+                emailLink.click();
+                document.body.removeChild(emailLink);
             });
         });
     </script>
