@@ -40,77 +40,87 @@
     <main class="main-container">
         <header class="page-header">
             <h1>Feedback & Contact Us</h1>
-            <p class="subtitle">Share your feedback, report issues, or get in touch with our team</p>
+            <p class="subtitle">Share suggestions, report issues, or contact the team with one simple form</p>
         </header>
 
-        <div class="page-content">
+        <div class="page-content feedback-layout">
             <div class="content-section">
                 <h2>We Value Your Feedback</h2>
-                <p>Your feedback helps us improve the Linear Algebra Vector Checker and develop better educational tools. Whether you're a student, educator, or mathematics enthusiast, we want to hear from you.</p>
-                
-                <div class="note-box">
-                    <h4>Types of Feedback We Appreciate</h4>
-                    <ul>
-                        <li>Bug reports or technical issues</li>
-                        <li>Suggestions for new features or improvements</li>
-                        <li>Feedback on educational effectiveness</li>
-                        <li>Requests for additional example sets or topics</li>
-                        <li>Accessibility suggestions</li>
-                        <li>General comments about your experience</li>
-                    </ul>
+                <p>Your feedback helps us improve both the learning experience and the interface. Whether you are a student, educator, or independent learner, your suggestions help us make this virtual lab clearer and more useful.</p>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <i class="fas fa-bug"></i>
+                        <h3>Report Problems</h3>
+                        <p>Tell us about broken inputs, confusing results, or layout issues on desktop or mobile.</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-star"></i>
+                        <h3>Suggest Improvements</h3>
+                        <p>Share ideas for better theory explanations, better quiz flow, or new simulator features.</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Collaborate</h3>
+                        <p>If you want to contribute content or development help, let us know how you would like to support the lab.</p>
+                    </div>
                 </div>
             </div>
 
             <div class="content-section">
                 <h2>Contact Form</h2>
-                <p>Use the form below to send us a message. We typically respond within 2-3 business days.</p>
+                <p>Use the form below to prepare your message. When you submit, the page opens your email app with the feedback details filled in for you.</p>
                 
                 <div class="contact-form">
                     <form id="feedbackForm">
-                        <div class="form-group">
-                            <label for="name">Your Name *</label>
-                            <input type="text" id="name" name="name" class="form-control" required>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name">Your Name *</label>
+                                <input type="text" id="name" name="name" class="form-control" required placeholder="Enter your name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" class="form-control" required placeholder="Enter your email">
+                            </div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="role">Your Role</label>
+                                <select id="role" name="role" class="form-control">
+                                    <option value="">Select your role</option>
+                                    <option value="student">Student</option>
+                                    <option value="educator">Educator</option>
+                                    <option value="self-learner">Self-Learner</option>
+                                    <option value="developer">Developer</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Subject *</label>
+                                <select id="subject" name="subject" class="form-control" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="bug report">Bug Report</option>
+                                    <option value="feature suggestion">Feature Suggestion</option>
+                                    <option value="theory feedback">Theory Feedback</option>
+                                    <option value="quiz feedback">Quiz Feedback</option>
+                                    <option value="collaboration">Collaboration</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="role">Your Role</label>
-                            <select id="role" name="role" class="form-control">
-                                <option value="">Select your role</option>
-                                <option value="student">Student</option>
-                                <option value="educator">Educator/Teacher</option>
-                                <option value="professor">University Professor</option>
-                                <option value="researcher">Researcher</option>
-                                <option value="developer">Developer</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Subject *</label>
-                            <select id="subject" name="subject" class="form-control" required>
-                                <option value="">Select a subject</option>
-                                <option value="bug">Bug Report</option>
-                                <option value="feature">Feature Request</option>
-                                <option value="education">Educational Feedback</option>
-                                <option value="collaboration">Collaboration Inquiry</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
+
                         <div class="form-group">
                             <label for="message">Your Message *</label>
-                            <textarea id="message" name="message" class="form-control" rows="6" required placeholder="Please provide details about your feedback, issue, or inquiry..."></textarea>
+                            <textarea id="message" name="message" class="form-control" rows="6" required placeholder="Please describe your feedback, issue, or idea in a few clear sentences..."></textarea>
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group checkbox-inline">
                             <label>
                                 <input type="checkbox" name="consent" required>
-                                I agree to the privacy policy and consent to having my feedback used to improve this tool
+                                I agree that this message may be used to improve this virtual lab
                             </label>
                         </div>
                         
@@ -118,41 +128,64 @@
                             <i class="fas fa-paper-plane"></i> Send Message
                         </button>
                         
-                        <div id="formMessage" style="display: none; margin-top: 20px; padding: 15px; border-radius: 8px; background-color: #d4edda; color: #155724;"></div>
+                        <div id="formMessage" class="feedback-message" style="display: none;"></div>
                     </form>
                 </div>
             </div>
 
             <div class="content-section">
+                <h2>Helpful Before You Submit</h2>
+                <div class="definition-box">
+                    <h4><i class="fas fa-list-check"></i> Include Details Like These</h4>
+                    <ul class="theory-list">
+                        <li>Which page or feature you were using</li>
+                        <li>What you expected to happen</li>
+                        <li>What actually happened instead</li>
+                        <li>Any browser or device details if the issue is technical</li>
+                    </ul>
+                </div>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <i class="fas fa-mobile-screen-button"></i>
+                        <h3>For Mobile Issues</h3>
+                        <p>Mention the device and whether the layout, buttons, or quiz controls were difficult to use.</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-book"></i>
+                        <h3>For Learning Feedback</h3>
+                        <p>Tell us which explanation felt unclear so we can improve the theory or examples.</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-comments"></i>
+                        <h3>For General Suggestions</h3>
+                        <p>Share ideas for new examples, better wording, or additional calculator features.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
                 <h2>Other Ways to Reach Us</h2>
-                
-                <div class="team-grid">
-                    <div class="team-member">
-                        <i class="fas fa-envelope fa-3x" style="color: var(--secondary-teal); margin-bottom: 15px;"></i>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <i class="fas fa-envelope"></i>
                         <h3>Email</h3>
-                        <p><strong>Project Lead (Aniket):</strong><br>
+                        <p><strong>Project Contact (Aniket):</strong><br>
                         <a href="mailto:aniketvipulchougule@gmail.com">aniketvipulchougule@gmail.com</a></p>
                         <p><strong>GitHub Profile:</strong><br>
                         <a href="https://github.com/aniketchougule1902" target="_blank">github.com/aniketchougule1902</a></p>
+                        <p>Use email when you want to share detailed suggestions or collaboration ideas.</p>
                     </div>
-                    
-                    <div class="team-member">
-                        <i class="fas fa-code-branch fa-3x" style="color: var(--secondary-teal); margin-bottom: 15px;"></i>
+                    <div class="info-card">
+                        <i class="fab fa-github"></i>
                         <h3>GitHub</h3>
-                        <p>Report issues, request features, or contribute to the project:</p>
                         <p><a href="https://github.com/aniketchougule1902/VirtualLab" target="_blank">github.com/aniketchougule1902/VirtualLab</a></p>
-                        <p>We welcome pull requests, bug reports, and feature suggestions from the community.</p>
+                        <p>Use GitHub to report bugs, request features, or contribute directly to the project.</p>
                     </div>
-                    
-                    <div class="team-member">
-                        <i class="fas fa-comments fa-3x" style="color: var(--secondary-teal); margin-bottom: 15px;"></i>
-                        <h3>Connect</h3>
-                        <p>Connect with the team on social media for updates and discussions:</p>
-                        <div class="social-links" style="justify-content: center; margin-top: 15px;">
-                            <a href="https://github.com/aniketchougule1902/VirtualLab" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        </div>
-                        <p style="margin-top:var(--spacing-sm)">Join our community of students and mathematics enthusiasts.</p>
+                    <div class="info-card">
+                        <i class="fas fa-user-group"></i>
+                        <h3>Team Contact</h3>
+                        <p><strong>Lead Developer:</strong> <a href="https://github.com/aniketchougule1902" target="_blank">github.com/aniketchougule1902</a></p>
+                        <p>Reach out if you want to discuss implementation details or future improvements.</p>
                     </div>
                 </div>
             </div>
@@ -161,81 +194,23 @@
                 <h2>Frequently Asked Questions</h2>
                 
                 <div class="example-box">
-                    <h4>Q: How long does it take to get a response to my feedback?</h4>
-                    <p>A: We strive to respond to all feedback within 2-3 business days. Bug reports and critical issues are addressed as quickly as possible.</p>
+                    <h4>Q: What type of feedback is most useful?</h4>
+                    <p>A: Specific feedback is the most helpful. Mention the page, the issue, and what change would make the tool easier to use or understand.</p>
                 </div>
                 
                 <div class="example-box">
                     <h4>Q: Can I use this tool in my classroom or online course?</h4>
-                    <p>A: Yes! The Linear Algebra Vector Checker is free for educational use. We'd love to hear how you're using it in your teaching.</p>
+                    <p>A: Yes. The tool is designed for educational use, guided practice, and quick concept demonstration.</p>
                 </div>
                 
                 <div class="example-box">
-                    <h4>Q: Do you offer custom versions for specific educational institutions?</h4>
-                    <p>A: We're open to collaborations with educational institutions. Please reach out via our GitHub repository or email us directly to discuss possibilities.</p>
+                    <h4>Q: Can I help improve this project?</h4>
+                    <p>A: Yes. You can share ideas through this form or contribute through the GitHub repository.</p>
                 </div>
-                
-                <div class="example-box">
-                    <h4>Q: How can I contribute to the development of this tool?</h4>
-                    <p>A: Check our GitHub repository for contribution guidelines. We welcome code contributions, documentation improvements, and testing assistance.</p>
-                </div>
-                
-                <div class="example-box">
-                    <h4>Q: Is my personal information safe when I submit feedback?</h4>
-                    <p>A: Yes, we take privacy seriously. We only use your information to respond to your feedback and improve our tools. We never share your information with third parties without your consent.</p>
-                </div>
-            </div>
 
-            <div class="content-section">
-                <h2>Report a Bug</h2>
-                
-                <div class="definition-box">
-                    <h4>How to Report Bugs Effectively</h4>
-                    <p>To help us fix issues quickly, please include as much detail as possible:</p>
-                    <ol>
-                        <li><strong>Description:</strong> What exactly went wrong?</li>
-                        <li><strong>Steps to Reproduce:</strong> Step-by-step instructions to recreate the issue</li>
-                        <li><strong>Expected Behavior:</strong> What should have happened?</li>
-                        <li><strong>Actual Behavior:</strong> What actually happened?</li>
-                        <li><strong>Environment:</strong> Browser, operating system, device type</li>
-                        <li><strong>Screenshots:</strong> If possible, include screenshots or screen recordings</li>
-                    </ol>
-                    <p>You can report bugs through the contact form or directly on GitHub.</p>
-                </div>
-            </div>
-
-            <div class="content-section">
-                <h2>Feature Requests</h2>
-                
-                <div class="note-box">
-                    <h4>Upcoming Features Based on User Feedback</h4>
-                    <p>Here are some features we're working on based on user suggestions:</p>
-                    <ul>
-                        <li>Support for vectors in ℝ⁴ (4D) with appropriate visualizations</li>
-                        <li>Step-by-step solution mode showing intermediate calculations</li>
-                        <li>Export capabilities for LaTeX and other academic formats</li>
-                        <li>More example sets with real-world applications</li>
-                        <li>Mobile app versions for iOS and Android</li>
-                        <li>Integration with learning management systems (LMS)</li>
-                    </ul>
-                    <p>Have another idea? Let us know using the contact form!</p>
-                </div>
-            </div>
-            
-            <div class="content-section">
-                <h2>Privacy Policy</h2>
-                
                 <div class="example-box">
-                    <h4>Our Commitment to Privacy</h4>
-                    <p>We are committed to protecting your privacy:</p>
-                    <ul>
-                        <li>We collect minimal information necessary to respond to feedback</li>
-                        <li>We never sell or share your personal information with third parties</li>
-                        <li>We use industry-standard security measures to protect your data</li>
-                        <li>You can request deletion of your information at any time</li>
-                        <li>Our tools run entirely in your browser - no data is sent to servers during normal use</li>
-                    </ul>
-                    <p>For the full privacy policy, please contact us via the GitHub repository or email directly.</p>
+                    <h4>Q: Does the contact form send data to a server?</h4>
+                    <p>A: No. The page opens your email app with a ready-to-send message, so you can review it before sending.</p>
                 </div>
             </div>
         </div>
@@ -299,39 +274,41 @@
             // Feedback form handling
             const feedbackForm = document.getElementById('feedbackForm');
             const formMessage = document.getElementById('formMessage');
+            const FORM_RESET_DELAY = 200;
+            const MESSAGE_DISPLAY_DURATION = 5000;
             
-            feedbackForm.addEventListener('submit', function(e) {
-                e.preventDefault();
+            if (feedbackForm && formMessage) {
+                feedbackForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
 
-                const recipientEmail = 'aniketvipulchougule@gmail.com';
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const role = document.getElementById('role').value || 'Not specified';
-                const subjectSelect = document.getElementById('subject');
-                const subject = subjectSelect.options[subjectSelect.selectedIndex].text;
-                const message = document.getElementById('message').value.trim();
-                const consent = feedbackForm.querySelector('input[name="consent"]').checked ? 'Yes' : 'No';
+                    const recipientEmail = 'aniketvipulchougule@gmail.com';
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const role = document.getElementById('role').value || 'Not specified';
+                    const subjectSelect = document.getElementById('subject');
+                    const subject = subjectSelect.options[subjectSelect.selectedIndex].text;
+                    const message = document.getElementById('message').value.trim();
+                    const consent = feedbackForm.querySelector('input[name="consent"]').checked ? 'Yes' : 'No';
 
-                const mailSubject = `Virtual Lab Feedback: ${subject}`;
-                const mailBody = `Name: ${name}\nEmail: ${email}\nRole: ${role}\nSubject: ${subject}\nConsent Given: ${consent}\n\nMessage:\n${message}`;
-                const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+                    const mailSubject = `Virtual Lab Feedback: ${subject}`;
+                    const mailBody = `Name: ${name}\nEmail: ${email}\nRole: ${role}\nSubject: ${subject}\nConsent Given: ${consent}\n\nMessage:\n${message}`;
+                    const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
 
-                formMessage.textContent = "Opening your email app to send feedback...";
-                formMessage.style.display = 'block';
-                formMessage.style.backgroundColor = '#d4edda';
-                formMessage.style.color = '#155724';
+                    formMessage.textContent = `Thank you, ${name || 'there'}. Opening your email app with your feedback draft now.`;
+                    formMessage.style.display = 'block';
+                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-                const emailLink = document.createElement('a');
-                emailLink.href = mailtoLink;
-                emailLink.style.display = 'none';
-                document.body.appendChild(emailLink);
-                emailLink.click();
-                document.body.removeChild(emailLink);
+                    window.location.href = mailtoLink;
 
-                setTimeout(() => {
-                    formMessage.style.display = 'none';
-                }, 5000);
-            });
+                    setTimeout(() => {
+                        feedbackForm.reset();
+                    }, FORM_RESET_DELAY);
+
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, MESSAGE_DISPLAY_DURATION);
+                });
+            }
         });
     </script>
 </body>

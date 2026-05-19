@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    const quizSection = document.querySelector('.quiz-section');
     const questionBlocks = document.querySelectorAll('.quiz-section .example-box');
+    const quizItems = [];
 
     questionBlocks.forEach((block, index) => {
         const questionEl = block.querySelector('h4');
@@ -67,11 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
             optionsWrapper.appendChild(label);
         });
 
-        const checkButton = document.createElement('button');
-        checkButton.type = 'button';
-        checkButton.className = 'btn btn-primary quiz-check-btn';
-        checkButton.textContent = 'Check Answer';
-
         const feedback = document.createElement('div');
         feedback.className = 'quiz-feedback';
 
@@ -86,29 +83,96 @@ document.addEventListener('DOMContentLoaded', function() {
         solutionContainer.appendChild(solutionTitle);
         solutionContainer.appendChild(solutionList.cloneNode(true));
 
-        checkButton.addEventListener('click', () => {
-            const selectedOption = optionsWrapper.querySelector(`input[name="quiz-${index}"]:checked`);
-
-            if (!selectedOption) {
-                feedback.className = 'quiz-feedback warning';
-                feedback.textContent = 'Please select an option before checking your answer.';
-                solutionContainer.style.display = 'none';
-                return;
-            }
-
-            const isCorrect = selectedOption.value === correctOption;
-
-            if (isCorrect) {
-                feedback.className = 'quiz-feedback correct';
-                feedback.textContent = 'Correct! Great work.';
-            } else {
-                feedback.className = 'quiz-feedback incorrect';
-                feedback.textContent = `Incorrect. Correct option: ${correctOption}.`;
-            }
-
-            solutionContainer.style.display = 'block';
+        quizItems.push({
+            block,
+            optionsWrapper,
+            feedback,
+            solutionContainer,
+            correctOption,
+            inputName: `quiz-${index}`
         });
 
-        block.replaceChildren(questionTitle, optionsWrapper, checkButton, feedback, solutionContainer);
+        block.replaceChildren(questionTitle, optionsWrapper, feedback, solutionContainer);
+    });
+
+    if (!quizSection || quizItems.length === 0) {
+        return;
+    }
+
+    const summaryBox = document.createElement('div');
+    summaryBox.className = 'quiz-summary';
+    summaryBox.style.display = 'none';
+
+    const actionsWrapper = document.createElement('div');
+    actionsWrapper.className = 'quiz-actions';
+
+    const submitButton = document.createElement('button');
+    submitButton.type = 'button';
+    submitButton.className = 'btn btn-primary';
+    submitButton.textContent = 'Submit Answers';
+
+    const resetButton = document.createElement('button');
+    resetButton.type = 'button';
+    resetButton.className = 'btn btn-secondary';
+    resetButton.textContent = 'Retake Quiz';
+    resetButton.addEventListener('click', () => {
+        window.location.reload();
+    });
+
+    actionsWrapper.append(submitButton, resetButton);
+    quizSection.append(summaryBox, actionsWrapper);
+
+    submitButton.addEventListener('click', () => {
+        let score = 0;
+        let unanswered = 0;
+
+        quizItems.forEach(item => {
+            const selectedOption = item.optionsWrapper.querySelector(`input[name="${item.inputName}"]:checked`);
+            const labels = Array.from(item.optionsWrapper.querySelectorAll('.quiz-option'));
+            const selectedValue = selectedOption ? selectedOption.value : null;
+
+            labels.forEach(label => {
+                const input = label.querySelector('input');
+                label.classList.remove('correct-answer', 'user-incorrect');
+
+                if (input.value === item.correctOption) {
+                    label.classList.add('correct-answer');
+                }
+
+                if (selectedValue && input.value === selectedValue && selectedValue !== item.correctOption) {
+                    label.classList.add('user-incorrect');
+                }
+
+                input.disabled = true;
+            });
+
+            if (!selectedValue) {
+                unanswered += 1;
+                item.feedback.className = 'quiz-feedback warning';
+                item.feedback.textContent = `Not attempted. Correct option: ${item.correctOption}.`;
+            } else if (selectedValue === item.correctOption) {
+                score += 1;
+                item.feedback.className = 'quiz-feedback correct';
+                item.feedback.textContent = 'Correct answer.';
+            } else {
+                item.feedback.className = 'quiz-feedback incorrect';
+                item.feedback.textContent = `Incorrect. Correct option: ${item.correctOption}.`;
+            }
+
+            item.solutionContainer.style.display = 'block';
+        });
+
+        const total = quizItems.length;
+        const percentage = Math.round((score / total) * 100);
+
+        summaryBox.innerHTML = `
+            <h3>Your Score</h3>
+            <p class="quiz-score">${score} / ${total} (${percentage}%)</p>
+            <p>${score} correct, ${total - score - unanswered} incorrect, ${unanswered} not attempted.</p>
+        `;
+        summaryBox.style.display = 'block';
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitted';
+        summaryBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
 });
