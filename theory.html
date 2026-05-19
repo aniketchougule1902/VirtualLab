@@ -112,6 +112,70 @@
             </section>
 
             <section class="content-section">
+                <h2>Introduction to Vectors in ℝⁿ (Very Simple)</h2>
+                <div class="definition-box theory-box">
+                    <h4><i class="fas fa-book-open"></i> Definition: n-Dimensional Vector</h4>
+                    <p>A vector in ℝⁿ is just an ordered list of n real numbers.</p>
+                    <p class="formula">v = (v₁, v₂, ..., vₙ) ∈ ℝⁿ</p>
+                    <p>Each value vᵢ is called a component.</p>
+                </div>
+                <div class="note-box theory-box">
+                    <h4><i class="fas fa-arrows-to-dot"></i> Linear Combination in n-Dimensions</h4>
+                    <p>Multiply each vector by a number (scalar), then add.</p>
+                    <p class="formula">w = c₁v₁ + c₂v₂ + ... + cₖvₖ</p>
+                </div>
+                <div class="example-box theory-box">
+                    <h4><i class="fas fa-scale-balanced"></i> Dependency &amp; Independence (Main Condition)</h4>
+                    <p>Check this equation:</p>
+                    <p class="formula">c₁v₁ + c₂v₂ + ... + cₖvₖ = 0</p>
+                    <ul class="theory-list">
+                        <li><strong>Linearly dependent:</strong> if there is a solution where at least one c-value is non-zero.</li>
+                        <li><strong>Linearly independent:</strong> if the only solution is <strong>c₁ = c₂ = ... = cₖ = 0</strong>.</li>
+                    </ul>
+                </div>
+                <div class="theory-grid">
+                    <article class="theory-card">
+                        <h3>ℝ² (2D)</h3>
+                        <ul class="theory-list">
+                            <li>Dependent if vectors lie on the same line (collinear).</li>
+                            <li>Any 3 or more vectors are always dependent.</li>
+                        </ul>
+                    </article>
+                    <article class="theory-card">
+                        <h3>ℝ³ (3D)</h3>
+                        <ul class="theory-list">
+                            <li>Dependent if vectors lie in the same plane (coplanar).</li>
+                            <li>Any 4 or more vectors are always dependent.</li>
+                        </ul>
+                    </article>
+                    <article class="theory-card">
+                        <h3>ℝⁿ (nD)</h3>
+                        <ul class="theory-list">
+                            <li>General rule: more than n vectors are always dependent.</li>
+                            <li>Maximum independent vectors in ℝⁿ is exactly n.</li>
+                        </ul>
+                    </article>
+                </div>
+                <div class="theory-steps">
+                    <article class="theory-step-card">
+                        <span>1</span>
+                        <h3>Matrix Rank Method</h3>
+                        <p>Form a matrix using vectors as columns. If rank = number of vectors, independent; otherwise dependent.</p>
+                    </article>
+                    <article class="theory-step-card">
+                        <span>2</span>
+                        <h3>Determinant Method</h3>
+                        <p>This method works only for the square case (n vectors in ℝⁿ). If det(A) ≠ 0, the vectors are independent. If det(A) = 0, the vectors are dependent.</p>
+                    </article>
+                    <article class="theory-step-card">
+                        <span>3</span>
+                        <h3>RREF Method</h3>
+                        <p>Count pivots (leading 1s). Pivots = rank. If rank equals number of vectors, independent; else dependent.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="content-section">
                 <h2>Rank, Determinant, and RREF</h2>
                 <div class="theory-steps">
                     <article class="theory-step-card">
