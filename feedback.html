@@ -327,6 +327,10 @@
                 document.body.appendChild(emailLink);
                 emailLink.click();
                 document.body.removeChild(emailLink);
+
+                setTimeout(() => {
+                    formMessage.style.display = 'none';
+                }, 5000);
             });
         });
     </script>
