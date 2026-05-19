@@ -69,7 +69,7 @@
 
             <div class="content-section">
                 <h2>Contact Form</h2>
-                <p>Use the form below to send your message. The form stays in your browser and shows a confirmation message after submission.</p>
+                <p>Use the form below to prepare your message. When you submit, the page opens your email app with the feedback details filled in for you.</p>
                 
                 <div class="contact-form">
                     <form id="feedbackForm">
@@ -169,7 +169,10 @@
                     <div class="info-card">
                         <i class="fas fa-envelope"></i>
                         <h3>Email</h3>
-                        <p><strong>Project Lead:</strong> <a href="mailto:Krushnasurase060@gmail.com">Krushnasurase060@gmail.com</a></p>
+                        <p><strong>Project Lead (Aniket):</strong><br>
+                        <a href="mailto:aniketvipulchougule@gmail.com">aniketvipulchougule@gmail.com</a></p>
+                        <p><strong>GitHub Profile:</strong><br>
+                        <a href="https://github.com/aniketchougule1902" target="_blank">github.com/aniketchougule1902</a></p>
                         <p>Use email when you want to share detailed suggestions or collaboration ideas.</p>
                     </div>
                     <div class="info-card">
@@ -207,7 +210,7 @@
 
                 <div class="example-box">
                     <h4>Q: Does the contact form send data to a server?</h4>
-                    <p>A: No. This page currently shows a browser-side confirmation message and helps you draft structured feedback.</p>
+                    <p>A: No. The page opens your email app with a ready-to-send message, so you can review it before sending.</p>
                 </div>
             </div>
         </div>
@@ -234,7 +237,7 @@
             
             <div class="footer-section">
                 <h4>Contact Info</h4>
-                <p><i class="fas fa-envelope"></i> Krushnasurase060@gmail.com</p>
+                <p><i class="fas fa-envelope"></i> aniketvipulchougule@gmail.com</p>
                 <p><i class="fas fa-globe"></i> <a href="https://aniketchougule1902.github.io/VirtualLab/" target="_blank" style="color:var(--neutral-gray-dark)">aniketchougule1902.github.io/VirtualLab</a></p>
                 <div class="social-links">
                     <a href="https://github.com/aniketchougule1902/VirtualLab" class="social-link"><i class="fab fa-github"></i></a>
@@ -276,16 +279,37 @@
                 feedbackForm.addEventListener('submit', function(e) {
                     e.preventDefault();
 
-                    const name = document.getElementById('name').value.trim() || 'there';
-                    const subject = document.getElementById('subject').value || 'feedback';
+                    const recipientEmail = 'aniketvipulchougule@gmail.com';
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const role = document.getElementById('role').value || 'Not specified';
+                    const subjectSelect = document.getElementById('subject');
+                    const subject = subjectSelect.options[subjectSelect.selectedIndex].text;
+                    const message = document.getElementById('message').value.trim();
+                    const consent = feedbackForm.querySelector('input[name="consent"]').checked ? 'Yes' : 'No';
 
-                    formMessage.textContent = `Thank you, ${name}. Your ${subject} message has been recorded in this demo form. You can also use the GitHub link on this page for direct project updates.`;
+                    const mailSubject = `Virtual Lab Feedback: ${subject}`;
+                    const mailBody = `Name: ${name}\nEmail: ${email}\nRole: ${role}\nSubject: ${subject}\nConsent Given: ${consent}\n\nMessage:\n${message}`;
+                    const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+
+                    formMessage.textContent = `Thank you, ${name || 'there'}. Opening your email app with your feedback draft now.`;
                     formMessage.style.display = 'block';
                     formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                    const emailLink = document.createElement('a');
+                    emailLink.href = mailtoLink;
+                    emailLink.style.display = 'none';
+                    document.body.appendChild(emailLink);
+                    emailLink.click();
+                    document.body.removeChild(emailLink);
 
                     setTimeout(() => {
                         feedbackForm.reset();
                     }, 200);
+
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
                 });
             }
         });
