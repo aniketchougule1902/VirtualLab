@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const MATRICES_RENDERED_FLAG = 'true';
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
 
@@ -224,9 +225,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function renderMatricesInElement(el) {
-        if (!el || el.dataset.matricesRendered === 'true') return;
-        if (!el.textContent || !el.textContent.includes('[[')) {
-            el.dataset.matricesRendered = 'true';
+        if (!el || el.dataset.matricesRendered === MATRICES_RENDERED_FLAG) return;
+        const elementText = el.textContent || '';
+        if (!elementText.includes('[[')) {
+            el.dataset.matricesRendered = MATRICES_RENDERED_FLAG;
             return;
         }
 
@@ -276,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
             node.parentNode.replaceChild(span, node);
         });
 
-        el.dataset.matricesRendered = 'true';
+        el.dataset.matricesRendered = MATRICES_RENDERED_FLAG;
     }
 
     // Render matrices in leaf content blocks to avoid repeated processing of the same text nodes.
