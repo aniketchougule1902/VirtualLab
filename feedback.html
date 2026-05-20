@@ -352,23 +352,30 @@
                         }
 
                         const isSheetsConfigured = Boolean(GOOGLE_SHEETS_WEB_APP_URL);
-                        let sheetsStoredSuccessfully = !isSheetsConfigured;
+                        let sheetsBackupSaved = true;
                         if (isSheetsConfigured) {
-                            if (sheetsResultState.status !== 'fulfilled' || !sheetsResultState.value?.ok) {
-                                sheetsStoredSuccessfully = false;
+                            if (sheetsResultState.status !== 'fulfilled') {
+                                sheetsBackupSaved = false;
                             } else {
-                                const sheetsContentType = sheetsResultState.value.headers.get('content-type') || '';
-                                if (sheetsContentType.includes('application/json')) {
-                                    const sheetsResult = await sheetsResultState.value.json();
-                                    sheetsStoredSuccessfully = typeof sheetsResult.success === 'boolean' ? sheetsResult.success : true;
+                                const sheetsResponse = sheetsResultState.value;
+                                if (!sheetsResponse.ok) {
+                                    sheetsBackupSaved = false;
                                 } else {
-                                    sheetsStoredSuccessfully = true;
+                                    const sheetsContentType = sheetsResponse.headers.get('content-type') || '';
+                                    if (sheetsContentType.includes('application/json')) {
+                                        try {
+                                            const sheetsResult = await sheetsResponse.json();
+                                            sheetsBackupSaved = sheetsResult?.success === true;
+                                        } catch {
+                                            sheetsBackupSaved = false;
+                                        }
+                                    }
                                 }
                             }
                         }
 
-                        if (isSheetsConfigured && !sheetsStoredSuccessfully) {
-                            formMessage.textContent = `Thank you, ${name || 'there'}. Your feedback email was sent, but we could not confirm Google Sheets logging.`;
+                        if (isSheetsConfigured && !sheetsBackupSaved) {
+                            formMessage.textContent = `Thank you, ${name || 'there'}. Your feedback was sent successfully, but there was an issue saving a backup copy.`;
                         } else {
                             formMessage.textContent = `Thank you, ${name || 'there'}. Your feedback has been sent successfully.`;
                         }
