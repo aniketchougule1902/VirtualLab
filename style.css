@@ -1511,19 +1511,6 @@ a:hover {
     gap: var(--spacing-lg);
 }
 
-.step-card span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: var(--primary-blue-light);
-    color: #fff;
-    font-weight: 700;
-    margin-bottom: var(--spacing-sm);
-}
-
 .landing-cta {
     text-align: center;
     background: var(--neutral-white);
@@ -2421,7 +2408,8 @@ body {
     animation: stepBodyFadeIn 0.3s ease;
 }
 
-.step-card.active .step-body {
+.step-card.active .step-body,
+.step-card.completed .step-body {
     display: block;
 }
 
