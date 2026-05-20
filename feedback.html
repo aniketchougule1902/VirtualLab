@@ -68,7 +68,7 @@
 
             <div class="content-section">
                 <h2>Contact Form</h2>
-                <p>Use the form below to send your message directly to us using Web3Forms and log it in Google Sheets.</p>
+                <p>Use the form below to send your message directly to us.</p>
                 
                 <div class="contact-form">
                     <form id="feedbackForm">
@@ -276,10 +276,11 @@
             const formMessage = document.getElementById('formMessage');
             const FORM_RESET_DELAY = 200;
             const MESSAGE_DISPLAY_DURATION = 5000;
+            const SUPPORT_EMAIL = 'aniketvipulchougule@gmail.com';
             // Replace with your deployed Google Apps Script Web App URL for this sheet.
             // Deploy from the sheet-bound script as Web App (Execute as: Me, Who has access: Anyone).
             // Example: https://script.google.com/macros/s/xxxxxxxxxxxxxxxx/exec
-            const GOOGLE_SHEETS_WEB_APP_URL = '';
+            const GOOGLE_SHEETS_WEB_APP_URL = null;
             
             if (feedbackForm && formMessage) {
                 feedbackForm.addEventListener('submit', async function(e) {
@@ -340,22 +341,31 @@
                         const [emailResultState, sheetsResultState] = await Promise.allSettled([emailPromise, sheetsPromise]);
 
                         if (emailResultState.status !== 'fulfilled') {
-                            throw new Error('Unable to submit feedback right now. Please try again later or email aniketvipulchougule@gmail.com.');
+                            throw new Error(`Unable to submit feedback right now. Please try again later or email ${SUPPORT_EMAIL}.`);
                         }
 
                         const emailResponse = emailResultState.value;
                         const emailResult = await emailResponse.json();
 
                         if (!emailResponse.ok || !emailResult.success) {
-                            throw new Error(emailResult.message || 'Unable to submit feedback right now. Please try again later or email aniketvipulchougule@gmail.com.');
+                            throw new Error(emailResult.message || `Unable to submit feedback right now. Please try again later or email ${SUPPORT_EMAIL}.`);
                         }
 
                         const isSheetsConfigured = Boolean(GOOGLE_SHEETS_WEB_APP_URL);
-                        const sheetsStoredSuccessfully = !isSheetsConfigured || (
-                            sheetsResultState.status === 'fulfilled' &&
-                            sheetsResultState.value &&
-                            sheetsResultState.value.ok
-                        );
+                        let sheetsStoredSuccessfully = !isSheetsConfigured;
+                        if (isSheetsConfigured) {
+                            if (sheetsResultState.status !== 'fulfilled' || !sheetsResultState.value?.ok) {
+                                sheetsStoredSuccessfully = false;
+                            } else {
+                                const sheetsContentType = sheetsResultState.value.headers.get('content-type') || '';
+                                if (sheetsContentType.includes('application/json')) {
+                                    const sheetsResult = await sheetsResultState.value.json();
+                                    sheetsStoredSuccessfully = typeof sheetsResult.success === 'boolean' ? sheetsResult.success : true;
+                                } else {
+                                    sheetsStoredSuccessfully = true;
+                                }
+                            }
+                        }
 
                         if (isSheetsConfigured && !sheetsStoredSuccessfully) {
                             formMessage.textContent = `Thank you, ${name || 'there'}. Your feedback email was sent, but we could not confirm Google Sheets logging.`;
