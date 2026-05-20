@@ -224,6 +224,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function renderMatricesInElement(el) {
+        if (!el || el.dataset.matricesRendered === 'true') return;
+        if (!el.textContent || !el.textContent.includes('[[')) {
+            el.dataset.matricesRendered = 'true';
+            return;
+        }
+
         // Only process text nodes and simple inline elements
         const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
         const textNodes = [];
@@ -269,10 +275,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             node.parentNode.replaceChild(span, node);
         });
+
+        el.dataset.matricesRendered = 'true';
     }
 
-    // Render matrices in quiz boxes, theory sections, etc.
-    document.querySelectorAll('.example-box, .definition-box, .note-box, .content-section, .formula').forEach(el => {
+    // Render matrices in leaf content blocks to avoid repeated processing of the same text nodes.
+    document.querySelectorAll('.example-box, .definition-box, .note-box, .formula').forEach(el => {
         renderMatricesInElement(el);
     });
 });
