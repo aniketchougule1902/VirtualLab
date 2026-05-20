@@ -283,14 +283,13 @@
 
                     const name = document.getElementById('name').value.trim();
                     const email = document.getElementById('email').value.trim();
-                    const role = document.getElementById('role').value || 'not specified';
+                    const role = document.getElementById('role').value || 'Not specified';
                     const subjectSelect = document.getElementById('subject');
                     const subject = subjectSelect.options[subjectSelect.selectedIndex].text;
                     const message = document.getElementById('message').value.trim();
                     const submitButton = feedbackForm.querySelector('button[type="submit"]');
                     const originalButtonText = submitButton.innerHTML;
                     const formData = new FormData(feedbackForm);
-                    formData.set('access_key', '329290ae-3b9a-4c88-b8c5-bad857788a71');
                     formData.set('subject', `Virtual Lab Feedback: ${subject}`);
                     formData.set('from_name', name || 'Virtual Lab User');
                     formData.set('replyto', email);
@@ -323,7 +322,7 @@
                                 formMessage.style.display = 'none';
                             }, MESSAGE_DISPLAY_DURATION);
                         } else {
-                            throw new Error(result.message || 'Unable to submit feedback right now.');
+                            throw new Error(result.message || 'Unable to submit feedback right now. Please try again later or contact us directly.');
                         }
                     } catch (error) {
                         formMessage.textContent = error.message || 'Submission failed. Please try again.';
