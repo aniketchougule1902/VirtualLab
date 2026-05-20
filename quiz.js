@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const MATRICES_RENDERED_MARKER = 'true';
+    const MATRIX_NOTATION_START = '[[';
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
 
@@ -224,6 +226,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function renderMatricesInElement(el) {
+        if (!el || el.dataset.matricesRendered === MATRICES_RENDERED_MARKER) return;
+        const elementText = el.textContent || '';
+        if (!elementText.includes(MATRIX_NOTATION_START)) {
+            el.dataset.matricesRendered = MATRICES_RENDERED_MARKER;
+            return;
+        }
+
         // Only process text nodes and simple inline elements
         const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
         const textNodes = [];
@@ -231,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         textNodes.forEach(node => {
             const text = node.textContent;
-            if (!text.includes('[[')) return;
+            if (!text.includes(MATRIX_NOTATION_START)) return;
 
             // Find all matrix patterns
             const fullRegex = /\[\[(?:[^\[\]]*?\[?[^\[\]]*?\]?)*\]\]/g;
@@ -269,10 +278,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             node.parentNode.replaceChild(span, node);
         });
+
+        el.dataset.matricesRendered = MATRICES_RENDERED_MARKER;
     }
 
-    // Render matrices in quiz boxes, theory sections, etc.
-    document.querySelectorAll('.example-box, .definition-box, .note-box, .content-section, .formula').forEach(el => {
+    // Render matrices in leaf content blocks to avoid repeated processing of the same text nodes.
+    document.querySelectorAll('.example-box, .definition-box, .note-box, .formula').forEach(el => {
         renderMatricesInElement(el);
     });
 });
