@@ -276,7 +276,6 @@
             const formMessage = document.getElementById('formMessage');
             const FORM_RESET_DELAY = 200;
             const MESSAGE_DISPLAY_DURATION = 5000;
-            const GOOGLE_SHEET_ID = '1At26QYAFLHwPdjCZDZEagQYdCzJ64cNLGg2H9LjvBXw';
             // Replace with your deployed Google Apps Script Web App URL for this sheet.
             // Example: https://script.google.com/macros/s/xxxxxxxxxxxxxxxx/exec
             const GOOGLE_SHEETS_WEB_APP_URL = '';
@@ -308,8 +307,7 @@
                         subject,
                         message,
                         consent: feedbackForm.querySelector('input[name="consent"]').checked ? 'Yes' : 'No',
-                        source: 'VirtualLab Feedback Form',
-                        sheetId: GOOGLE_SHEET_ID
+                        source: 'VirtualLab Feedback Form'
                     };
 
                     submitButton.disabled = true;
@@ -331,7 +329,6 @@
                         const sheetsPromise = GOOGLE_SHEETS_WEB_APP_URL
                             ? fetch(GOOGLE_SHEETS_WEB_APP_URL, {
                                 method: 'POST',
-                                mode: 'no-cors',
                                 headers: {
                                     'Content-Type': 'application/json'
                                 },
@@ -339,15 +336,30 @@
                             })
                             : Promise.resolve(null);
 
-                        const [emailResponse] = await Promise.all([emailPromise, sheetsPromise]);
+                        const [emailResultState, sheetsResultState] = await Promise.allSettled([emailPromise, sheetsPromise]);
+
+                        if (emailResultState.status !== 'fulfilled') {
+                            throw new Error('Unable to submit feedback right now. Please try again later or email aniketvipulchougule@gmail.com.');
+                        }
+
+                        const emailResponse = emailResultState.value;
                         const emailResult = await emailResponse.json();
 
                         if (emailResponse.ok && emailResult.success) {
-                            if (!GOOGLE_SHEETS_WEB_APP_URL) {
+                            const isSheetsConfigured = Boolean(GOOGLE_SHEETS_WEB_APP_URL);
+                            const sheetsStoredSuccessfully = !isSheetsConfigured || (
+                                sheetsResultState.status === 'fulfilled' &&
+                                (sheetsResultState.value === null || sheetsResultState.value.ok)
+                            );
+
+                            if (!isSheetsConfigured) {
                                 formMessage.textContent = `Thank you, ${name || 'there'}. Your feedback has been sent successfully. (Google Sheets logging is not configured yet.)`;
-                            } else {
+                            } else if (sheetsStoredSuccessfully) {
                                 formMessage.textContent = `Thank you, ${name || 'there'}. Your feedback has been sent and stored successfully.`;
+                            } else {
+                                formMessage.textContent = `Thank you, ${name || 'there'}. Your feedback email was sent, but we could not confirm Google Sheets logging.`;
                             }
+
                             setTimeout(() => {
                                 feedbackForm.reset();
                             }, FORM_RESET_DELAY);
