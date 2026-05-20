@@ -68,10 +68,11 @@
 
             <div class="content-section">
                 <h2>Contact Form</h2>
-                <p>Use the form below to prepare your message. When you submit, the page opens your email app with the feedback details filled in for you.</p>
+                <p>Use the form below to send your message directly to us using Web3Forms.</p>
                 
                 <div class="contact-form">
                     <form id="feedbackForm">
+                        <input type="hidden" name="access_key" value="329290ae-3b9a-4c88-b8c5-bad857788a71">
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="name">Your Name *</label>
@@ -209,7 +210,7 @@
 
                 <div class="example-box">
                     <h4>Q: Does the contact form send data to a server?</h4>
-                    <p>A: No. The page opens your email app with a ready-to-send message, so you can review it before sending.</p>
+                    <p>A: Yes. Form data is submitted securely through Web3Forms to deliver your feedback.</p>
                 </div>
             </div>
         </div>
@@ -277,35 +278,59 @@
             const MESSAGE_DISPLAY_DURATION = 5000;
             
             if (feedbackForm && formMessage) {
-                feedbackForm.addEventListener('submit', function(e) {
+                feedbackForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
 
-                    const recipientEmail = 'aniketvipulchougule@gmail.com';
                     const name = document.getElementById('name').value.trim();
                     const email = document.getElementById('email').value.trim();
-                    const role = document.getElementById('role').value || 'Not specified';
+                    const role = document.getElementById('role').value || 'not specified';
                     const subjectSelect = document.getElementById('subject');
                     const subject = subjectSelect.options[subjectSelect.selectedIndex].text;
                     const message = document.getElementById('message').value.trim();
-                    const consent = feedbackForm.querySelector('input[name="consent"]').checked ? 'Yes' : 'No';
+                    const submitButton = feedbackForm.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.innerHTML;
+                    const formData = new FormData(feedbackForm);
+                    formData.set('access_key', '329290ae-3b9a-4c88-b8c5-bad857788a71');
+                    formData.set('subject', `Virtual Lab Feedback: ${subject}`);
+                    formData.set('from_name', name || 'Virtual Lab User');
+                    formData.set('replyto', email);
+                    formData.set('role', role);
+                    formData.set('message', message);
 
-                    const mailSubject = `Virtual Lab Feedback: ${subject}`;
-                    const mailBody = `Name: ${name}\nEmail: ${email}\nRole: ${role}\nSubject: ${subject}\nConsent Given: ${consent}\n\nMessage:\n${message}`;
-                    const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
-
-                    formMessage.textContent = `Thank you, ${name || 'there'}. Opening your email app with your feedback draft now.`;
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                    formMessage.className = 'feedback-message';
+                    formMessage.textContent = 'Submitting your feedback...';
                     formMessage.style.display = 'block';
                     formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-                    window.location.href = mailtoLink;
+                    try {
+                        const response = await fetch('https://api.web3forms.com/submit', {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                Accept: 'application/json'
+                            }
+                        });
+                        const result = await response.json();
 
-                    setTimeout(() => {
-                        feedbackForm.reset();
-                    }, FORM_RESET_DELAY);
-
-                    setTimeout(() => {
-                        formMessage.style.display = 'none';
-                    }, MESSAGE_DISPLAY_DURATION);
+                        if (response.ok && result.success) {
+                            formMessage.textContent = `Thank you, ${name || 'there'}. Your feedback has been sent successfully.`;
+                            setTimeout(() => {
+                                feedbackForm.reset();
+                            }, FORM_RESET_DELAY);
+                            setTimeout(() => {
+                                formMessage.style.display = 'none';
+                            }, MESSAGE_DISPLAY_DURATION);
+                        } else {
+                            throw new Error(result.message || 'Unable to submit feedback right now.');
+                        }
+                    } catch (error) {
+                        formMessage.textContent = error.message || 'Submission failed. Please try again.';
+                    } finally {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalButtonText;
+                    }
                 });
             }
         });

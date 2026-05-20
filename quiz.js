@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const optionsText = optionsPara.textContent.replace('Options:', '').trim();
-        const markerRegex = /([A-Z])\)\s/g;
+        const markerRegex = /([A-Z])\)\s*/g;
         const markers = [...optionsText.matchAll(markerRegex)];
         const correctOption = answerPara.textContent.replace('Correct Option:', '').trim().charAt(0).toUpperCase();
 
