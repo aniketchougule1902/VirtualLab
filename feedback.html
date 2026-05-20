@@ -277,6 +277,7 @@
             const FORM_RESET_DELAY = 200;
             const MESSAGE_DISPLAY_DURATION = 5000;
             // Replace with your deployed Google Apps Script Web App URL for this sheet.
+            // Deploy from the sheet-bound script as Web App (Execute as: Me, Who has access: Anyone).
             // Example: https://script.google.com/macros/s/xxxxxxxxxxxxxxxx/exec
             const GOOGLE_SHEETS_WEB_APP_URL = '';
             
@@ -345,30 +346,29 @@
                         const emailResponse = emailResultState.value;
                         const emailResult = await emailResponse.json();
 
-                        if (emailResponse.ok && emailResult.success) {
-                            const isSheetsConfigured = Boolean(GOOGLE_SHEETS_WEB_APP_URL);
-                            const sheetsStoredSuccessfully = !isSheetsConfigured || (
-                                sheetsResultState.status === 'fulfilled' &&
-                                (sheetsResultState.value === null || sheetsResultState.value.ok)
-                            );
-
-                            if (!isSheetsConfigured) {
-                                formMessage.textContent = `Thank you, ${name || 'there'}. Your feedback has been sent successfully. (Google Sheets logging is not configured yet.)`;
-                            } else if (sheetsStoredSuccessfully) {
-                                formMessage.textContent = `Thank you, ${name || 'there'}. Your feedback has been sent and stored successfully.`;
-                            } else {
-                                formMessage.textContent = `Thank you, ${name || 'there'}. Your feedback email was sent, but we could not confirm Google Sheets logging.`;
-                            }
-
-                            setTimeout(() => {
-                                feedbackForm.reset();
-                            }, FORM_RESET_DELAY);
-                            setTimeout(() => {
-                                formMessage.style.display = 'none';
-                            }, MESSAGE_DISPLAY_DURATION);
-                        } else {
+                        if (!emailResponse.ok || !emailResult.success) {
                             throw new Error(emailResult.message || 'Unable to submit feedback right now. Please try again later or email aniketvipulchougule@gmail.com.');
                         }
+
+                        const isSheetsConfigured = Boolean(GOOGLE_SHEETS_WEB_APP_URL);
+                        const sheetsStoredSuccessfully = !isSheetsConfigured || (
+                            sheetsResultState.status === 'fulfilled' &&
+                            sheetsResultState.value &&
+                            sheetsResultState.value.ok
+                        );
+
+                        if (isSheetsConfigured && !sheetsStoredSuccessfully) {
+                            formMessage.textContent = `Thank you, ${name || 'there'}. Your feedback email was sent, but we could not confirm Google Sheets logging.`;
+                        } else {
+                            formMessage.textContent = `Thank you, ${name || 'there'}. Your feedback has been sent successfully.`;
+                        }
+
+                        setTimeout(() => {
+                            feedbackForm.reset();
+                        }, FORM_RESET_DELAY);
+                        setTimeout(() => {
+                            formMessage.style.display = 'none';
+                        }, MESSAGE_DISPLAY_DURATION);
                     } catch (error) {
                         formMessage.textContent = error.message || 'Submission failed. Please try again.';
                     } finally {
