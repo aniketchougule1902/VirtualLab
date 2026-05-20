@@ -210,7 +210,7 @@
 
                 <div class="example-box">
                     <h4>Q: Does the contact form send data to a server?</h4>
-                    <p>A: Yes. Form data is submitted securely through Web3Forms to deliver your feedback.</p>
+                    <p>A: Yes. Form data is submitted through Web3Forms and also saved to our Google Sheets feedback log.</p>
                 </div>
             </div>
         </div>
@@ -277,10 +277,7 @@
             const FORM_RESET_DELAY = 200;
             const MESSAGE_DISPLAY_DURATION = 5000;
             const SUPPORT_EMAIL = 'aniketvipulchougule@gmail.com';
-            // Replace with your deployed Google Apps Script Web App URL for this sheet.
-            // Deploy from the sheet-bound script as Web App (Execute as: Me, Who has access: Anyone).
-            // Example: https://script.google.com/macros/s/xxxxxxxxxxxxxxxx/exec
-            const GOOGLE_SHEETS_WEB_APP_URL = null;
+            const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzoR-D0vrKW5m-iztHORU89ThspBI4x9GQ-mV_1hFr4VMvKS6BPKm3Wv0oudoqDYnzC/exec';
             
             if (feedbackForm && formMessage) {
                 feedbackForm.addEventListener('submit', async function(e) {
